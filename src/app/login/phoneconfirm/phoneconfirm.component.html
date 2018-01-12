@@ -1,0 +1,43 @@
+<h3>{{'confirm'|translate}} {{'your'|translate}} {{'phone'|translate}} {{'number'|translate}}</h3>
+<p>{{'this'|translate}} {{'is'|translate}} {{'so'|translate}} {{'to'|translate}} {{'send'|translate}} {{'receipt'|translate}} {{'and'|translate}} {{'receive'|translate}} {{'latest'|translate}} {{'offer'|translate}}.</p>
+<div class="round">
+    <fa name="mobile" size="5x"></fa>
+
+</div>
+<div class="input-areas">
+    <mat-progress-bar *ngIf="ShowProgress" mode="indeterminate"></mat-progress-bar>
+    <form *ngIf="showform" (ngSubmit)="phoneLoginProcess(plf)" #plf="ngForm">
+
+        <mat-form-field>
+            <mat-select placeholder="{{'country'|translate}}" name="countryCode" required [ngModel]="countryCode">
+                <mat-option *ngFor="let country of countries" [value]="country.dial_code">
+                    {{ country.name}}({{country.dial_code}})
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input type="number" name="number" matInput placeholder="{{'phone'|translate}} {{'number'|translate}}" [value]="phone" required [ngModel]="phone">
+        </mat-form-field>
+
+        <!-- <div id="recaptcha-container"></div> -->
+        <button [disabled]="!plf.valid" type="submit" mat-raised-button color="accent" id="btn-code-verification">{{'next'|translate}}</button>
+    </form>
+
+    <form *ngIf="verificationId" class="form-inline" (ngSubmit)="verifyLoginCode(ccf)" #ccf="ngForm">
+        <mat-form-field>
+            <input type="text" name="confirmationcode" matInput placeholder="{{'verification'|translate}} {{'code'|translate}}" required ngModel>
+        </mat-form-field>
+        <button *ngIf="!errorResponse" [disabled]="!ccf.valid" type="submit" mat-raised-button color="accent">{{'continue'|translate}}</button>
+        <button *ngIf="errorResponse" type="button" mat-raised-button color="accent" (click)="tryAnother()">{{'try'|translate}} {{'another'|translate}}</button>
+
+
+        <p *ngIf="errorResponse" style="color:red;">{{ errorResponse }}</p>
+
+    </form>
+
+    <button *ngIf="showResend" type="button" mat-raised-button color="accent" (click)="tryAnother()" style="margin-top:20px;">{{'resend'|translate}}</button>
+    <button mat-icon-button class="pull-right" (click)="goToHome()">
+      <fa name="home" ></fa>
+    </button>
+</div>

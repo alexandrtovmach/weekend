@@ -1,0 +1,85 @@
+<div class="container margin-top-container">
+    <button (click)="search()" mat-fab color="accent" class="search-btn-mobile"> <fa name="search" size="lg"></fa></button>
+    <div class="row search-panel">
+        <div class="col-sm-12">
+            <h1 class="brand-name">Weekendq8</h1>
+            <p class="house-subtitle">{{'search' |translate}} {{'for'|translate}} {{'house'|translate}}</p>
+            <mat-card class="search-area">
+
+                <mat-card-content>
+
+                    <form class=" srch-form" (ngSubmit)="onSearch(sf)" #sf="ngForm">
+                        <mat-input-container class="custom-input">
+                            <input type="text" name="place" matInput placeholder="{{'where'|translate}}" ngModel>
+                        </mat-input-container>
+                        <mat-checkbox name="swimmingpool" ngModel>{{'swimming'|translate}} {{'pool'|translate}}</mat-checkbox>
+                        <mat-form-field>
+                            <mat-select placeholder="{{'to'|translate}} {{'rent'|translate}}" name="torent" [(ngModel)]="toRentSelected">
+                                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                                <mat-option value="family"> {{'family'|translate}} </mat-option>
+                                <mat-option value="single"> {{'guys'|translate}} </mat-option>
+                                <mat-option value="mix"> {{'mix' |translate }} </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select placeholder="{{'which'|translate}} {{'line'|translate}}" name="whichline" [(ngModel)]="whichlineSelected">
+                                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                                <mat-option value="onSea">{{'on'|translate}}{{'sea'|translate}} </mat-option>
+                                <mat-option value="firstLine"> {{'first'|translate}}-{{'line'|translate}} </mat-option>
+                                <mat-option value="secondLine"> {{'second'|translate}}-{{'line'|translate}} </mat-option>
+                                <mat-option value="thirdLine"> {{'third'|translate}}-{{'line'|translate}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select placeholder="{{'house'|translate}} {{'type'|translate}}" name="housetype" [(ngModel)]="housetypeSelected">
+                                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                                <mat-option value="apartment"> {{'apartment'|translate}} </mat-option>
+                                <mat-option value="privateHouse"> {{'private' |translate}} {{'house'|translate}} </mat-option>
+                                <mat-option value="blocks"> {{'blocks'|translate}} </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button type="submit" mat-raised-button color="accent" class="custom-button">{{'search'|translate}}</button>
+                    </form>
+                </mat-card-content>
+
+            </mat-card>
+
+        </div>
+    </div>
+    <!-- Search Area Finished -->
+    <div class="row">
+        <mat-progress-bar mode="query" *ngIf="showSpinner"></mat-progress-bar>
+        <div class="col-lg-12" *ngIf="filtered.length==0 && !showSpinner">
+            <div class="no-result-found">
+                <h4 class="no-result-found"> {{'no'|translate}} {{'result'|translate}} {{'found'|translate}}</h4>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 " *ngFor="let house of filtered; let i=index">
+            <div (click)="goToHouseDetail(house.houseId)" class="housethumbnail" *ngIf="i<9">
+                <img src="{{house.photosGalaryURLs[0]}} " class="img img-responsive house-thumbnail ">
+                <div class="caption ">
+                    <div class="left">
+                        <p>{{ house.price }}{{'kd'|translate}}<span>{{'price'|translate}}{{'for'|translate}}{{'one'|translate}}{{'night'|translate}}</span></p>
+                    </div>
+                    <div class="right">
+                        <h3>{{ house.houseName }}</h3>
+                        <p>{{ house.location }}</p>
+                        <span class="counter"><img src="assets/img/icon-bedroom.png " width="25 ">{{ house.rooms }}</span>
+                        <span class="counter"><img src="assets/img/icon-toilet.png " width="25 ">{{ house.toilets }}</span>
+                        <span class="counter"><img *ngIf="house.privateSwimmingPool=='true' " src="assets/img/icon-privatSwimmingPool.png " width="25 "></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <div class="row" *ngIf="!showSpinner && filtered.length >0">
+        <div class="col-xs-offset-5 col-xs-2">
+            <a routerLink="/allhouses" mat-raised-button color="accent" class="custom-button">{{'see'|translate}} {{'all'|translate}}</a>
+        </div>
+    </div>
+</div>

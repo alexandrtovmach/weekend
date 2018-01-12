@@ -1,0 +1,93 @@
+<nav class="navbar navbar-inverse margin-top-container">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li routerLinkActive="active"><a routerLink="/dashboard">{{'dashboard'|translate}} </a></li>
+                <li routerLinkActive="active"><a routerLink="/booking-requests">{{'my'|translate}} {{'booking'|translate}} {{'request'|translate}} </a></li>
+                <li routerLinkActive="active"><a routerLink="/favhouses">{{'my'|translate}} {{'favorite'|translate}} {{'houses'|translate}}</a></li>
+                <li routerLinkActive="active"><a routerLink="/profile">{{'my'|translate}} {{'profile'|translate}} </a></li>
+
+            </ul>
+
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-card>
+                <img src="{{ photoUrl }}" alt="{{displayName}}" class="img img-responsive img-circle img-profile">
+                <h2>{{displayName}}</h2>
+                <button mat-raised-button color="accent" routerLink="/profile">{{'complete'|translate}} {{'profile'|translate}}</button>
+            </mat-card>
+        </div>
+        <div class="col-sm-9">
+            <mat-card class="customize-card">
+                <div class="profile-info">{{'basic'|translate}} {{'profile'|translate}} {{'info'|translate}}</div>
+                <div class="custom-cart-container">
+
+
+
+
+                    <form (ngSubmit)="updateBasicProfile(frofileForm)" #frofileForm="ngForm">
+
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="{{'name'|translate}}" name="name" [value]="displayName" required [ngModel]="displayName">
+                            <mat-icon matSuffix>
+                                <popover-content #nameinfo placement="left" [animation]="true" [closeOnClickOutside]="true">
+                                    <p>{{'name'|translate}} {{'is'|translate}} {{'required'|translate}} {{'for'|translate}} {{'booking'|translate}}</p>
+                                </popover-content>
+                                <button type="button" mat-icon-button [popover]="nameinfo" popoverPlacement="top" [popoverOnHover]="true">
+                                    <fa name="question-circle"></fa>
+                                </button>
+                            </mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <input type="email" matInput placeholder="{{'email'|translate}}" name="email" [value]="email" required [ngModel]="email">
+                            <mat-icon matSuffix>
+                                <popover-content #emailinfo placement="left" [animation]="true" [closeOnClickOutside]="true">
+                                    <p>{{'to'|translate}} {{'send'|translate}} {{'the'|translate}} {{'receipts'|translate}} {{'and'|translate}} {{'receive'|translate}} {{'latest'|translate}} {{'offers'|translate}} {{'and'|translate}} {{'contact'|translate}}
+                                        {{'you'|translate}}.
+                                    </p>
+                                </popover-content>
+                                <button type="button" mat-icon-button [popover]="emailinfo" popoverPlacement="top" [popoverOnHover]="true">
+                                    <fa name="question-circle"></fa>
+                                </button>
+                            </mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="{{'contact'|translate}}" name="phoneNumber" disabled [value]="phonenumber" [ngModel]="phonenumber">
+                            <mat-icon matSuffix>
+
+                                <popover-content #contactinfo placement="left" [animation]="true" [closeOnClickOutside]="true">
+                                    <p>{{'to'|translate}} {{'send'|translate}} {{'the'|translate}} {{'receipts'|translate}} {{'and'|translate}} {{'receive'|translate}} {{'latest'|translate}} {{'offers'|translate}} {{'and'|translate}} {{'contact'|translate}}
+                                        {{'you'|translate}}.
+                                    </p>
+                                </popover-content>
+                                <fa name="check-circle-o"></fa>
+                                <button type="button" mat-icon-button [popover]="contactinfo" popoverPlacement="top" [popoverOnHover]="true">
+                                    <fa name="question-circle"></fa>
+                                </button>
+                            </mat-icon>
+                        </mat-form-field>
+                        <button [disabled]="!frofileForm.valid" type="submit" mat-raised-button color="accent" class="profile-save-btn">{{'save'|translate}}</button>
+                    </form>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

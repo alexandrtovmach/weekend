@@ -1,0 +1,118 @@
+<div class="container margin-top-container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <mat-horizontal-stepper [linear]="isLinear">
+                <mat-step>
+
+                    <ng-template matStepLabel>{{'booking'|translate}} {{'review'|translate}}</ng-template>
+
+                    <mat-card class="card-booking-review">
+                        <mat-card-header>
+
+                            <mat-card-title>{{'booking'|translate}} {{'review'|translate}}</mat-card-title>
+                        </mat-card-header>
+
+                        <mat-card-content>
+
+                            <popover-content #basicPriceBreakdown title="{{'basic'|translate}} {{'price'|translate}} {{'breakdown'|translate}}" placement="right" [animation]="true" [closeOnClickOutside]="true">
+                                <table class="table">
+                                    <tr *ngFor="let bookingdate of bookingDates">
+                                        <td>{{bookingdate}}</td>
+                                        <td>{{'kd'|translate}}{{ houseDetail?.price }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>{{'total'|translate}}</th>
+                                        <td>{{'kd'|translate}}{{ houseDetail?.price * selectedNights }}</td>
+                                    </tr>
+                                </table>
+                            </popover-content>
+                            <popover-content #depositInfo placement="left" [animation]="true" [closeOnClickOutside]="true">
+                                <p>{{'we'|translate}} {{'will'|translate}} {{'refund'|translate}} {{'deposit'|translate}} {{'amount'|translate}} {{'after'|translate}} {{'check'|translate}} {{'out'|translate}}</p>
+                            </popover-content>
+                            <table class="table">
+                                <tr>
+                                    <td>{{'kd'|translate}}{{ houseDetail?.price }} x {{selectedNights}} {{'nights'|translate}}
+                                        <button mat-icon-button [popover]="basicPriceBreakdown" popoverPlacement="right" [popoverOnHover]="true">
+                                          <fa name="question-circle" size="lg"></fa>
+
+                                      </button>
+                                    </td>
+                                    <td>{{'kd'|translate}}{{ houseDetail?.price * selectedNights }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{'deposit'|translate}}
+                                        <button mat-icon-button [popover]="depositInfo" popoverPlacement="top" [popoverOnHover]="true">
+                                          <fa name="question-circle" size="lg"></fa>
+                                      </button>
+                                    </td>
+                                    <td>{{'kd'|translate}}100</td>
+                                </tr>
+                                <tr>
+                                    <th>{{'total'|translate}}</th>
+                                    <td>{{'kd'|translate}}{{ houseDetail?.price * selectedNights +100 }}</td>
+                                </tr>
+                            </table>
+                        </mat-card-content>
+
+                    </mat-card>
+
+                    <div class="footer-btn">
+                        <button mat-raised-button matStepperNext color="accent" class="pull-right">{{'next'|translate}}</button>
+                    </div>
+
+                </mat-step>
+                <mat-step>
+
+                    <ng-template matStepLabel>{{'profile'|translate}} {{'info'|translate}}</ng-template>
+                    <mat-card class="card-booking-review">
+                        <mat-card-header>
+
+                            <mat-card-title>{{'basic'|translate}} {{'profile'|translate}} {{'info'|translate}}</mat-card-title>
+                        </mat-card-header>
+
+                        <mat-card-content>
+
+                            <table class="table">
+                                <tr>
+                                    <td>{{'name'|translate}}:</td>
+                                    <td>{{ name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{'email'|translate}}:</td>
+                                    <td>{{ email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{'contact'|translate}}:</td>
+                                    <td> {{ contact }}</td>
+                                </tr>
+                            </table>
+                        </mat-card-content>
+
+                    </mat-card>
+
+                    <div class="footer-btn">
+                        <button mat-raised-button mat-button matStepperPrevious color="primary" class="pull-left">{{'back'|translate}}</button>
+                        <button mat-raised-button matStepperNext color="accent" class="pull-right">{{'next'|translate}}</button>
+                    </div>
+
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>{{'choose'|translate}} {{'payment'|translate}}</ng-template>
+                    <div class="payment-method">
+                        <a (click)="sendBookingRequest('false', name, contact, houseDetail.houseId, houseDetail.houseName, houseDetail.price, selectedNights)"> <img src="assets/img/money.png" class="img img-responsive"></a>
+                        <p style="text-align:center"> {{'cash'|translate}} </p>
+                    </div>
+                    <div class="payment-method">
+                        <a (click)="sendBookingRequest('true', name, contact, houseDetail.houseId, houseDetail.houseName, houseDetail.price, selectedNights)"><img src="assets/img/online.png" class="img img-responsive"></a>
+                        <p style="text-align:center"> {{'online'|translate}} </p>
+                    </div>
+
+                </mat-step>
+            </mat-horizontal-stepper>
+
+        </div>
+
+    </div>
+</div>

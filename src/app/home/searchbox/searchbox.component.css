@@ -1,0 +1,6 @@
+.btn-fixed {
+    position: fixed;
+    right: 26px;
+    z-index: 1;
+    top: 100px;
+}

@@ -1,0 +1,104 @@
+.house-name {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.amenities {
+    margin-top: 15px;
+}
+
+agm-map {
+    height: 300px;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.cardtitle {
+    background: rgba(5, 179, 219, 0.7);
+    color: #fff;
+    padding: 5px 15px;
+    font-size: 18px;
+}
+
+.cardcontent {
+    padding: 5px 15px;
+}
+
+.booking-section {
+    padding: 0px;
+    background: rgba(255, 255, 255, 0.7);
+    color: rgba(0, 0, 0, .87);
+    margin-top: -36px;
+}
+
+.small-size {
+    width: 120px;
+}
+
+.error {
+    color: #d43242;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #0e76bc;
+    border-color: #0e76bc;
+}
+
+.mat-card-content>:last-child:not(.mat-card-footer),
+.mat-card>:last-child:not(.mat-card-footer) {
+    border-radius: 5px;
+}
+
+.titles {
+    font-weight: 700;
+    font-size: 28px;
+    color: #484848;
+}
+
+.slider-photo {
+    margin-top: -51px;
+    margin-left: 50px;
+}
+
+.margin-top-container {
+    margin-top: 80px;
+}
+
+.img-house-banner {
+    width: 100vw;
+    margin-top: 15px;
+    height: 500px;
+}
+
+@media screen and (max-width: 360px) {
+    .slider-photo-area {
+        margin-top: -18px;
+    }
+    .img-house-banner {
+        height: 200px;
+    }
+    .booking-section {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (min-width: 361px) and (max-width: 414px) {
+    .slider-photo-area {
+        margin-top: -18px;
+    }
+    .img-house-banner {
+        height: 273px;
+    }
+    .booking-section {
+        margin-top: 0px;
+    }
+}

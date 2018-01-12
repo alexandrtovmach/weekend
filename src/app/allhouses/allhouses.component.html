@@ -1,0 +1,122 @@
+<div class="container cntainer-srch">
+
+
+    <mat-button-toggle-group #group="matButtonToggleGroup" class="search-btn-mobile">
+        <mat-button-toggle (click)="search()">
+            <fa name="search" size="lg"></fa>
+        </mat-button-toggle>
+        <mat-button-toggle (click)="mapview(filtered)">
+            <fa name="globe" size="lg"></fa>
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+
+
+
+    <!-- <button (click)="search()" mat-fab color="accent" class="search-btn-mobile"> <fa name="search" size="lg"></fa></button> -->
+    <div class="row search-panel">
+        <div class="col-sm-12">
+            <mat-card class="search-area">
+
+                <mat-card-content>
+                    <form class=" srch-form" (ngSubmit)="onSearch(sf)" #sf="ngForm">
+                        <mat-input-container class="custom-input">
+                            <input type="text" name="place" matInput placeholder="{{'where'|translate}}" ngModel>
+                        </mat-input-container>
+                        <mat-checkbox name="swimmingpool" ngModel>{{'swimming'|translate}} {{'pool'|translate}}</mat-checkbox>
+                        <mat-form-field>
+                            <mat-select placeholder="{{'to'|translate}} {{'rent'|translate}}" name="torent" [(ngModel)]="toRentSelected">
+                                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                                <mat-option value="family"> {{'family'|translate}} </mat-option>
+                                <mat-option value="single"> {{'guys'|translate}} </mat-option>
+                                <mat-option value="mix"> {{'mix' |translate }} </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select placeholder="{{'which'|translate}} {{'line'|translate}}" name="whichline" [(ngModel)]="whichlineSelected">
+                                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                                <mat-option value="onSea">{{'on'|translate}}{{'sea'|translate}} </mat-option>
+                                <mat-option value="firstLine"> {{'first'|translate}}-{{'line'|translate}} </mat-option>
+                                <mat-option value="secondLine"> {{'second'|translate}}-{{'line'|translate}} </mat-option>
+                                <mat-option value="thirdLine"> {{'third'|translate}}-{{'line'|translate}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select placeholder="{{'house'|translate}} {{'type'|translate}}" name="housetype" [(ngModel)]="housetypeSelected">
+                                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                                <mat-option value="apartment"> {{'apartment'|translate}} </mat-option>
+                                <mat-option value="privateHouse"> {{'private' |translate}} {{'house'|translate}} </mat-option>
+                                <mat-option value="blocks"> {{'blocks'|translate}} </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button type="submit" mat-raised-button color="accent" class="custom-button">{{'search'|translate}}</button>
+                    </form>
+                </mat-card-content>
+
+            </mat-card>
+        </div>
+    </div>
+</div>
+<div class="container-fluid allhouse">
+    <div class="row">
+        <div class="col-sm-12 col-md-8">
+
+            <mat-progress-bar mode="query" *ngIf="showSpinner"></mat-progress-bar>
+            <div class="col-lg-12" *ngIf="filtered.length==0 && !showSpinner">
+                <div class="no-result-found">
+                    <h4 class="no-result-found"> {{'no'|translate}} {{'result'|translate}} {{'found'|translate}}</h4>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 " *ngFor="let house of filtered; let i=index">
+                <div class="housethumbnail ">
+                    <button mat-icon-button color="warn" class="likebtn" (click)="addLike(house.houseId)"><fa name="heart" size="2x"></fa></button>
+
+                    <ngx-carousel [inputs]="carouselOne" (carouselLoad)="myfunc($event)">
+                        <ngx-item NgxCarouselItem *ngFor="let image of house.photosGalaryURLs">
+                            <img src="{{image}} " class="img img-responsive house-thumbnail ">
+                        </ngx-item>
+
+
+                        <button NgxCarouselPrev class='btn btn-link leftRs'>  <fa name="chevron-left" size="2x" style="color:#fff;"></fa></button>
+                        <button NgxCarouselNext class='btn btn-link rightRs'><fa name="chevron-right" size="2x" style="color:#fff;"></fa></button>
+                    </ngx-carousel>
+
+
+
+
+                    <div class="caption" (click)="goToHouseDetail(house.houseId)">
+                        <div class="left">
+
+
+                            <p>{{ house.price }}{{'kd'|translate}}<span>{{'price'|translate}}{{'for'|translate}}{{'one'|translate}}{{'night'|translate}}</span></p>
+                        </div>
+                        <div class="right">
+                            <h3>{{ house.houseName }}</h3>
+                            <p>{{ house.location }}</p>
+                            <span class="counter"><img src="assets/img/icon-bedroom.png " width="25 ">{{ house.rooms }}</span>
+                            <span class="counter"><img src="assets/img/icon-toilet.png " width="25 ">{{ house.toilets }}</span>
+                            <span class="counter"><img *ngIf="house.privateSwimmingPool=='true' " src="assets/img/icon-privatSwimmingPool.png " width="25 "></span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- <div class="row">
+                <div class="col-sm-12">
+                    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event">
+                    </mat-paginator>
+                </div>
+            </div> -->
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <div class="map-area">
+                <agm-map [latitude]="28.652544" [longitude]="48.430187" [zoom]="13" [mapTypeId]="'terrain'" options="options">
+                    <agm-marker *ngFor="let house of allHouses; let i=index " [latitude]="house.Latitude" [longitude]="house.Longitude">
+                    </agm-marker>
+
+                </agm-map>
+            </div>
+        </div>
+    </div>
+</div>

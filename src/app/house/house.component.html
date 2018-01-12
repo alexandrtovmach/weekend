@@ -1,0 +1,183 @@
+<div class="container margin-top-container">
+    <button (click)="search()" mat-fab color="accent" class="search-btn-mobile"> <fa name="search" size="lg"></fa></button>
+    <div class="row search-panel">
+
+        <div class="col-sm-12">
+            <mat-card class="search-area">
+
+                <mat-card-content>
+
+
+
+                    <form class=" srch-form" (ngSubmit)="onSearch(sf)" #sf="ngForm">
+                        <mat-input-container class="custom-input">
+                            <input type="text" name="place" matInput placeholder="{{'where'|translate}}" ngModel>
+                        </mat-input-container>
+                        <mat-checkbox name="swimmingpool" ngModel>{{'swimming'|translate}} {{'pool'|translate}}</mat-checkbox>
+                        <mat-form-field>
+                            <mat-select placeholder="{{'to'|translate}} {{'rent'|translate}}" name="torent" [(ngModel)]="toRentSelected">
+                                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                                <mat-option value="family"> {{'family'|translate}} </mat-option>
+                                <mat-option value="single"> {{'guys'|translate}} </mat-option>
+                                <mat-option value="mix"> {{'mix' |translate }} </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select placeholder="{{'which'|translate}} {{'line'|translate}}" name="whichline" [(ngModel)]="whichlineSelected">
+                                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                                <mat-option value="onSea">{{'on'|translate}}{{'sea'|translate}} </mat-option>
+                                <mat-option value="firstLine"> {{'first'|translate}}-{{'line'|translate}} </mat-option>
+                                <mat-option value="secondLine"> {{'second'|translate}}-{{'line'|translate}} </mat-option>
+                                <mat-option value="thirdLine"> {{'third'|translate}}-{{'line'|translate}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select placeholder="{{'house'|translate}} {{'type'|translate}}" name="housetype" [(ngModel)]="housetypeSelected">
+                                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                                <mat-option value="apartment"> {{'apartment'|translate}} </mat-option>
+                                <mat-option value="privateHouse"> {{'private' |translate}} {{'house'|translate}} </mat-option>
+                                <mat-option value="blocks"> {{'blocks'|translate}} </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button type="submit" mat-raised-button color="accent" class="custom-button">{{'search'|translate}}</button>
+                    </form>
+
+
+
+                </mat-card-content>
+
+            </mat-card>
+
+        </div>
+    </div>
+
+</div>
+<mat-progress-bar *ngIf="showProgress" mode="indeterminate"></mat-progress-bar>
+<div *ngIf="!showProgress" class="container-fluid">
+    <div class="row slider-photo-area">
+
+        <img *ngIf="houseDetail.photosGalaryURLs" src="{{houseDetail.photosGalaryURLs[0] }}" class="img img-responsive img-house-banner" style="">
+        <div class="slider-photo"> <a mat-raised-button (click)="openGallerySlider(houseDetail.photosGalaryURLs)">{{'view'|translate}} {{'photos'|translate}}</a></div>
+    </div>
+
+</div>
+<div *ngIf="!showProgress" class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="page-header">
+                <h1>{{ houseDetail.houseName}} <small class="content-font">{{ houseDetail.location }}</small></h1>
+            </div>
+            <p class="content-font">{{houseDetail.descruption}}</p>
+            <span class="counter content-font"><img src="assets/img/icon-bedroom.png " width="35 ">&nbsp; &nbsp; &nbsp;{{ houseDetail.rooms }} {{'rooms'|translate}} &nbsp; &nbsp; &nbsp;</span>
+            <span class="counter content-font"><img src="assets/img/icon-toilet.png " width="35 ">&nbsp; &nbsp; &nbsp;{{ houseDetail.toilets }} {{'toilets'|translate}}&nbsp; &nbsp; &nbsp;</span>
+            <span class="counter content-font" *ngIf="houseDetail.privateSwimmingPool=='true' "><img *ngIf="houseDetail.privateSwimmingPool=='true' " src="assets/img/icon-privatSwimmingPool.png " width="35 ">&nbsp; &nbsp; &nbsp; {{'swimming'|translate}} {{'pool'|translate}}&nbsp; &nbsp; &nbsp;</span>
+            <span class="counter content-font"><img class="top-dtl-img" src="assets/img/icon-{{ houseDetail.typeOfPeopleAllowedToRent }}.png" width="35 " />&nbsp; &nbsp; &nbsp; {{ houseDetail.typeOfPeopleAllowedToRent|translate }}&nbsp; &nbsp; &nbsp;</span>
+            <span class="counter content-font"><img class="top-dtl-img" src="assets/img/icon-{{ houseDetail.houseType }}.png" width="35 " /> &nbsp; &nbsp; &nbsp;{{ houseDetail.houseType|translate }}&nbsp; &nbsp; &nbsp;</span>
+            <hr/>
+            <span class="subtitle">{{'amenities'|translate}}</span>
+            <div class="row amenities">
+                <div class="col-xs-6 amenities" *ngFor="let feature of houseDetail.featuers">
+                    <span class="counter content-font"><img class="top-dtl-img" src="assets/img/icon-{{ feature }}.png" width="35 " /> &nbsp; &nbsp; &nbsp;{{ feature |translate }}&nbsp; &nbsp; &nbsp;</span>
+                </div>
+
+            </div>
+            <hr>
+            <span class="subtitle">{{'house'|translate}} {{'rules'|translate}}</span>
+            <p>{{'check'|translate}} {{'in'|translate}} {{'time'|translate}} 3{{'pm'|translate}}</p>
+            <p>{{'check'|translate}} {{'out'|translate}} {{'time'|translate}} 3{{'am'|translate}}</p>
+            <hr>
+            <span class="subtitle">{{'safty'|translate}} {{'instructions'|translate}}</span>
+            <p>Comming Soon</p>
+
+        </div>
+        <div class="col-sm-4">
+            <mat-card class="booking-section">
+                <mat-card-title class="cardtitle">
+                    <p>{{'from'|translate}} <span class="price">{{'kd'|translate}}{{ houseDetail.price }} </span> {{'per'|translate}} {{'night'|translate}}</p>
+
+                </mat-card-title>
+                <mat-card-content class="cardcontent">
+                    <mat-input-container class="custom-input small-size">
+                        <!-- <div daterangepicker (selected)="selectedDate($event, daterange)"></div> -->
+                        <input type="text" name="checkin" matInput daterangepicker (selected)="checkInDate($event, daterange)" placeholder="{{'check'|translate}} {{'in'|translate}}" #checkin>
+                    </mat-input-container>
+                    <mat-input-container class="custom-input small-size">
+                        <!-- <div daterangepicker (selected)="selectedDate($event, daterange)"></div> -->
+                        <input type="text" name="checkout" matInput daterangepicker (selected)="checkOutDate($event, daterange)" placeholder="{{'check'|translate}} {{'out'|translate}}" #checkout>
+                    </mat-input-container>
+
+
+                    <popover-content #basicPriceBreakdown title="{{'basic'|translate}} {{'price'|translate}} {{'breakdown'|translate}}" placement="left" [animation]="true" [closeOnClickOutside]="true">
+                        <table class="table">
+                            <tr *ngFor="let bookingdate of bookingDates">
+                                <td>{{bookingdate}}</td>
+                                <td>{{'kd'|translate}}{{ houseDetail.price }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>{{'total'|translate}}</th>
+                                <td>{{'kd'|translate}}{{ houseDetail.price * selectedNights }}</td>
+                            </tr>
+                        </table>
+                    </popover-content>
+
+                    <popover-content #depositInfo placement="left" [animation]="true" [closeOnClickOutside]="true">
+                        <p>{{'we'|translate}} {{'will'|translate}} {{'refund'|translate}} {{'deposit'|translate}} {{'amount'|translate}} {{'after'|translate}} {{'check'|translate}} {{'out'|translate}}</p>
+                    </popover-content>
+
+                    <table class="table" *ngIf="bookingAvalibility===true && selectedNights>0 && checkin.value < checkout.value">
+                        <tr>
+                            <td>{{'kd'|translate}}{{ houseDetail.price }} x {{selectedNights}} {{'nights'|translate}}
+                                <button mat-icon-button [popover]="basicPriceBreakdown" popoverPlacement="top" [popoverOnHover]="true">
+                                  <fa name="question-circle" size="lg"></fa>
+                              </button>
+                            </td>
+                            <td>{{'kd'|translate}}{{ houseDetail.price * selectedNights }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{'deposit'|translate}}
+                                <button mat-icon-button [popover]="depositInfo" popoverPlacement="top" [popoverOnHover]="true">
+                                  <fa name="question-circle" size="lg"></fa>
+                              </button>
+                            </td>
+                            <td>{{'kd'|translate}}100</td>
+                        </tr>
+                        <tr>
+                            <th>{{'total'|translate}}</th>
+                            <td>{{'kd'|translate}}{{ houseDetail.price * selectedNights +100 }}</td>
+                        </tr>
+                    </table>
+                    <p *ngIf="bookingAvalibility==false" class="error">{{'those'|translate}} {{'dates'|translate}} {{'are'|translate}} {{'not'|translate}} {{'available'|translate}}</p>
+                    <p *ngIf="checkin.value > checkout.value" class="error">{{'invallid'|translate}} {{'dates'|translate}}</p>
+                    <button *ngIf="bookingAvalibility==false" class="btn btn-block btn-danger">{{'check'|translate}} {{'availibility'|translate}}</button>
+                    <button *ngIf="bookingAvalibility==true" class="btn btn-block btn-danger" [disabled]="checkin.value >= checkout.value" (click)="paymentProcess(houseDetail.houseId,checkin.value,checkout.value)">{{'request'|translate}} {{'to'|translate}} {{'book'|translate}}</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <agm-map [latitude]="houseDetail.Latitude" [longitude]="houseDetail.Longitude" [zoom]="14" [mapTypeId]="'terrain'">
+                <agm-marker [latitude]="houseDetail.Latitude" [longitude]="houseDetail.Longitude"></agm-marker>
+            </agm-map>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="titles">{{'similar'|translate}} {{'listings'|translate}}</h4>
+
+            <ngx-carousel [inputs]="carouselforSimilarHouse">
+
+                <ngx-tile NgxCarouselItem *ngFor="let image of carouselTileItems; let i=index">
+                    <a target="#" routerLink="/house/{{ allHouseId[i] }}" class="thumbnail">
+
+                        <img src="{{ image }}">
+                    </a>
+                </ngx-tile>
+
+                <button NgxCarouselPrev class='btn btn-link leftRs'>  <fa name="chevron-left" size="2x" style="color:#fff;"></fa></button>
+                <button NgxCarouselNext class='btn btn-link rightRs'><fa name="chevron-right" size="2x" style="color:#fff;"></fa></button>
+            </ngx-carousel>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<mat-card class="card-booking-review">
+    <mat-card-header>
+
+        <mat-card-title>{{'booking'|translate}} {{'success'|translate}}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="headerpart">
+            <img src="assets/img/logo.png" width="100" height="100" class="img-circle img-logo">
+            <h5 class="text-align">Weekend</h5>
+        </div>
+
+        <table class="table">
+            <tr>
+                <th colspan="2">Receipt Number:{{paymentResponse.trackid}}</th>
+            </tr>
+            <tr>
+                <td>Date </td>
+                <td>{{paymentResponse.postdate}}</td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td>{{'kd'|translate}}{{paymentResponse.amount}}</td>
+            </tr>
+
+            <tr>
+                <td>Payment ID</td>
+                <td>{{paymentResponse.paymentid}}</td>
+            </tr>
+            <tr>
+                <td>Transaction ID</td>
+                <td>{{paymentResponse.transid}}</td>
+            </tr>
+            <tr>
+                <td>Track ID</td>
+                <td>{{paymentResponse.trackid}}</td>
+            </tr>
+
+        </table>
+        <h3 class="successMsg">There was an error</h3>
+        <div class=" success-icon">
+            <fa name="check-circle" size="4x"></fa>
+        </div>
+
+        <br/>
+        <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>
+
+    </mat-card-content>
+
+</mat-card>

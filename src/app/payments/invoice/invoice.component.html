@@ -1,0 +1,42 @@
+<div class="container margin-top-container">
+    <div class="row">
+        <div class="col-sm-12">
+            <mat-card class="card-invoice">
+                <mat-card-header>
+
+                    <mat-card-title>Your Invoice</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <p><b>Invoice To:</b></p>
+                    <p>{{ bookingInfo?.CustomerName}}, {{ bookingInfo?.CustomerPhone1}}</p>
+                    <table class="table">
+                        <tr>
+                            <td>House Name</td>
+                            <td>{{ bookingInfo?.houseName }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <fa name="calendar" size="2x"></fa>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ checkinDateReadable }}
+                                <fa name="long-arrow-right"></fa> {{ checkOutDateReadable}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Kd{{ bookingInfo?.priceShown }} x {{selectedNights}} nights</td>
+                            <td>Kd{{ bookingInfo?.totalPrice }}</td>
+                        </tr>
+                        <tr>
+                            <td>Deposit</td>
+                            <td>Kd{{ bookingInfo?.deposit }}</td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td>Kd{{ bookingInfo?.totalPrice + bookingInfo?.deposit }}</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+.margin-top-container {
+    margin-top: 80px;
+}
+
+.card-invoice {
+    width: 400px;
+    margin: auto;
+}
+
+@media screen and (max-width: 400px) {
+    .card-invoice {
+        width: 90%;
+    }
+}

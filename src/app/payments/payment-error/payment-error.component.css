@@ -1,0 +1,10 @@
+.successMsg {
+    color: rgb(244, 206, 17);
+    font-weight: bold;
+    text-align: center;
+}
+
+.success-icon {
+    color: rgb(244, 206, 17);
+    text-align: center;
+}

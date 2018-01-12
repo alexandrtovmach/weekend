@@ -1,0 +1,57 @@
+.margin-top-container {
+    margin-top: 80px;
+}
+
+.navbar-nav>li>a {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 31px;
+}
+
+.navbar {
+    min-height: 35px;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.img-profile {
+    margin: auto;
+}
+
+button {
+    margin: auto;
+    width: 100%;
+}
+
+.profile-info {
+    background-color: #dce0e0 !important;
+    width: 100%;
+    height: 40px;
+    border-radius: 0px;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.customize-card {
+    padding: 0px;
+}
+
+.custom-cart-container {
+    padding: 24px;
+}
+
+.full-width {
+    width: 90%;
+}
+
+.profile-save-btn {
+    width: 100px;
+    margin: auto;
+    border-radius: 10px;
+}

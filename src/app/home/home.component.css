@@ -1,0 +1,22 @@
+.house-thumbnail {
+    width: 100%;
+    transition: 1.5s ease;
+    -webkit-transition: 1.5s ease;
+    -moz-transition: 1.5s ease;
+    border-radius: 10px;
+}
+
+.house-thumbnail:hover {
+    /* opacity: 0.3; */
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    z-index: 0;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.margin-top-container {
+    margin-top: 80px;
+}

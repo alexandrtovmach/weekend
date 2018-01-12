@@ -1,0 +1,46 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="assets/img/logo.png" class="img img-responsive logo" /></a>
+            <ul class="nav navbar-nav navbar-right">
+                <li *ngIf="!loginstatus">
+
+                    <button mat-raised-button color="accent" routerLink="/login">{{'login'|translate}}</button>
+                </li>
+
+                <button *ngIf="loginstatus==true && photoUrl!=null" mat-icon-button [matMenuTriggerFor]="menu"><img src="{{photoUrl}}" alt="{{profileName}}" class="img img-responsive img-circle profile-picture"></button>
+                <button *ngIf="loginstatus==true && photoUrl==null" mat-icon-button [matMenuTriggerFor]="menu"><img src="assets/img/logo.png" alt="{{profileName}}" class="img img-responsive img-circle profile-picture"></button>
+
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/dashboard">{{'dashboard'|translate}}</button>
+                    <button mat-menu-item routerLink="/booking-requests">{{'my'|translate}} {{'booking'|translate}} {{'request'|translate}}</button>
+                    <button mat-menu-item routerLink="/favhouses">{{'my'|translate}} {{'favorite'|translate}} {{'houses'|translate}}</button>
+                    <button mat-menu-item routerLink="/profile">{{'my'|translate}} {{'profile'|translate}}</button>
+                    <button mat-menu-item (click)="logout()">{{'logout'|translate}}</button>
+
+                </mat-menu>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<router-outlet>
+</router-outlet>
+<div class="container">
+    <div class="row footer">
+        <div class="col-sm-2">
+            <p class="text-left" style="color:#767676;">&copy; Weekendq8</p>
+        </div>
+        <div class="col-sm-offset-7 col-sm-3">
+            <div class="text-right" style="color:#767676;">
+                <fa name="facebook" size="2x"></fa>
+                <fa name="twitter" size="2x"></fa>
+                <fa name="instagram" size="2x"></fa>
+                <fa name="apple" size="2x"></fa>
+                <fa name="android" size="2x"></fa>
+            </div>
+        </div>
+    </div>
+</div>

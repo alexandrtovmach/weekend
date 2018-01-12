@@ -1,0 +1,42 @@
+<mat-card class="card-booking-review">
+    <mat-card-header>
+
+        <mat-card-title>{{'booking'|translate}} {{'review'|translate}}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="headerpart">
+            <img src="assets/img/logo.png" width="100" height="100" class="img-circle img-logo">
+            <h5 class="text-align">{{ billingData.organization}}</h5>
+        </div>
+
+        <table class="table">
+            <tr>
+                <th colspan="2">{{'receipt'|translate}} {{'number'|translate}}:{{billingData.receiptNumber}}</th>
+            </tr>
+            <tr>
+                <td>{{'total'|translate}} </td>
+                <td>{{'kd'|translate}}{{billingData.totalPrice}}</td>
+            </tr>
+            <tr>
+                <td>{{'deposit'|translate}}</td>
+                <td>{{'kd'|translate}}{{billingData.deposit}}</td>
+            </tr>
+            <tr>
+                <th>{{'total'|translate}}</th>
+                <td>{{'kd'|translate}}{{ billingData.totalPrice + billingData.deposit }}</td>
+            </tr>
+
+        </table>
+
+        <button mat-raised-button color="accent" style="width:100%;" (click)="onPayWith(billingData)" [disabled]="showSpinner">
+          {{'pay'|translate}} {{'with'|translate}}
+          <img src="assets/img/knet.png" width="30">
+        </button>
+        <mat-progress-bar mode="query" *ngIf="showSpinner"></mat-progress-bar>
+        <br/>
+        <p class="text-center"> {{'all'|translate}} {{'right'|translate}} {{'reserved'|translate}} &copy;2017 WeekendMoney</p>
+
+    </mat-card-content>
+
+</mat-card>

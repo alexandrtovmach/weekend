@@ -1,0 +1,6 @@
+<image-upload [max]="1" [extensions]="['jpeg','png']" (uploadFinished)="onUploadFinished($event)"></image-upload>
+<div class="progress" style="margin-top:20px;">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="uploaded" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': uploaded + '%'}">
+        Progress: {{ filename }} | {{ uploaded }}% Complete
+    </div>
+</div>

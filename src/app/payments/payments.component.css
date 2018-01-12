@@ -1,0 +1,32 @@
+.margin-top-container {
+    margin-top: 80px;
+}
+
+.card-booking-review {
+    width: 400px;
+    margin: auto;
+}
+
+.payment-method {
+    width: 200px;
+    margin: auto;
+}
+
+.payment-method img {
+    cursor: pointer;
+}
+
+.footer-btn {
+    width: 400px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 375px) {
+    .card-booking-review {
+        width: 95%;
+    }
+    .footer-btn {
+        width: 95%;
+    }
+}

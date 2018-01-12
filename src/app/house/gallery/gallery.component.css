@@ -1,0 +1,23 @@
+.house-thumbnail {
+    height: 700px;
+    margin-top: 0px;
+}
+
+.btn-fixed {
+    position: fixed;
+    right: 200px;
+    z-index: 1000;
+    top: 50px;
+}
+
+@media screen and (max-width: 360px) {
+    .house-thumbnail {
+        height: 369px;
+    }
+}
+
+@media screen and (min-width: 361px) and (max-width: 414px) {
+    .house-thumbnail {
+        height: 422px;
+    }
+}

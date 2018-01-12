@@ -1,0 +1,16 @@
+<h2>{{ houseDtl?.houseName}}</h2>
+<hr/>
+<ngx-carousel [inputs]="carouselOne">
+    <ngx-item NgxCarouselItem *ngFor="let image of sliderData">
+        <img src="{{image}} " class="img img-responsive house-thumbnail ">
+    </ngx-item>
+
+
+    <button NgxCarouselPrev class='btn btn-link leftRs'>  <fa name="chevron-left" size="2x" style="color:#fff;"></fa></button>
+    <button NgxCarouselNext class='btn btn-link rightRs'><fa name="chevron-right" size="2x" style="color:#fff;"></fa></button>
+</ngx-carousel>
+<p>{{ houseDtl?.descruption}}</p>
+<hr/>
+<p>
+    <fa name="calendar" size="2x"></fa>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ checkinDateReadable }}
+    <fa name="long-arrow-right"></fa> {{ checkOutDateReadable}}</p>

@@ -1,0 +1,46 @@
+<nav class="navbar navbar-inverse margin-top-container">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li routerLinkActive="active"><a routerLink="/dashboard">{{'dashboard'|translate}} </a></li>
+                <li routerLinkActive="active"><a routerLink="/booking-requests">{{'my'|translate}} {{'booking'|translate}} {{'request'|translate}} </a></li>
+                <li routerLinkActive="active"><a routerLink="/favhouses">{{'my'|translate}} {{'favorite'|translate}} {{'houses'|translate}}</a></li>
+                <li routerLinkActive="active"><a routerLink="/profile">{{'my'|translate}} {{'profile'|translate}} </a></li>
+
+            </ul>
+
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <mat-card class="customize-card">
+                <div class="profile-info">{{'my'|translate}} {{'favorite'|translate}} {{'houses'|translate}}</div>
+                <div class="custom-cart-container">
+                    <div class="list-group">
+
+                        <a (click)="houseDtl(house)" class="list-group-item" *ngFor="let house of housedetail">{{ house.houseName }}</a>
+                        <h3 *ngIf="housedetail.length==0" class="text-center no-data"> {{'no'|translate}} {{'data'|translate}} {{'to'|translate}} {{'display'|translate}}</h3>
+                    </div>
+
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+agm-map {
+    height: 100vh;
+}
+
+.btn-fixed {
+    position: fixed;
+    right: 5px;
+    z-index: 1;
+}
+
+.dlg-map {
+    max-width: 100vw !important;
+    margin: 0px;
+    padding: 0px;
+}

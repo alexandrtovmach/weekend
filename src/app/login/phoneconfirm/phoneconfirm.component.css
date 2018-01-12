@@ -1,0 +1,22 @@
+.round {
+    width: 100px;
+    height: 100px;
+    border: 3px solid #484848;
+    border-radius: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.input-areas {
+    width: 207px;
+    margin: auto;
+}
+
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent,
+.mat-raised-button.mat-accent {
+    background-color: #ff5a5f;
+    width: 100%;
+    border-radius: 5px;
+}

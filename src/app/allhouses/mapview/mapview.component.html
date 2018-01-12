@@ -1,0 +1,8 @@
+<button mat-icon-button color="accent" [mat-dialog-close]="true" class="btn-fixed">
+        <fa name="times" size="lg"></fa>
+      </button>
+<agm-map [latitude]="28.657520" [longitude]="48.350193" [zoom]="13" [mapTypeId]="'terrain'" options="options">
+    <agm-marker *ngFor="let house of allHouses; let i=index " [latitude]="house.Latitude" [longitude]="house.Longitude">
+    </agm-marker>
+
+</agm-map>

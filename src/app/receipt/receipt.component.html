@@ -1,0 +1,41 @@
+<mat-card class="card-booking-review">
+    <mat-card-header>
+
+        <mat-card-title>Your cash receipt</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="headerpart">
+            <img src="assets/img/logo.png" width="150" class="img-circle img-logo">
+            <h5 class="text-align">{{billInfo?.companyData.name}}</h5>
+        </div>
+
+        <table class="table" *ngIf="billInfo.isPaid">
+            <tr>
+                <th colspan="2">Receipt Number:{{billInfo?.ID}}</th>
+            </tr>
+            <tr>
+                <td>Total </td>
+                <td>{{'kd'|translate}}{{billInfo?.total}}</td>
+            </tr>
+            <tr>
+                <td>{{'deposit'|translate}}</td>
+                <td>{{'kd'|translate}}100</td>
+            </tr>
+            <tr>
+                <td>{{'discount'|translate}}</td>
+                <td>{{'kd'|translate}}{{billInfo?.discount}}</td>
+            </tr>
+            <tr>
+                <th>{{'total'|translate}}</th>
+                <td>{{'kd'|translate}}{{ billInfo?.total + 100 }}</td>
+            </tr>
+
+        </table>
+        <p style="font-weight: bold; font-size:18px;">Your Payment is not confirm yet!</p>
+        <br/>
+        <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>
+
+    </mat-card-content>
+
+</mat-card>

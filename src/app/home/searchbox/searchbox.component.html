@@ -1,0 +1,37 @@
+<mat-dialog-content>
+    <button mat-icon-button color="accent" [mat-dialog-close]="true" class="btn-fixed">
+        <fa name="times" size="lg"></fa>
+      </button>
+    <form class=" srch-form" (ngSubmit)="onSearch(sf)" #sf="ngForm">
+        <mat-input-container class="custom-input">
+            <input type="text" name="place" matInput placeholder="{{'where'|translate}}" ngModel>
+        </mat-input-container>
+        <mat-checkbox name="swimmingpool" ngModel>{{'swimming'|translate}} {{'pool'|translate}}</mat-checkbox>
+        <mat-form-field>
+            <mat-select placeholder="{{'to'|translate}} {{'rent'|translate}}" name="torent" [(ngModel)]="toRentSelected">
+                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                <mat-option value="family"> {{'family'|translate}} </mat-option>
+                <mat-option value="single"> {{'guys'|translate}} </mat-option>
+                <mat-option value="mix"> {{'mix' |translate }} </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="{{'which'|translate}} {{'line'|translate}}" name="whichline" [(ngModel)]="whichlineSelected">
+                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                <mat-option value="onSea">{{'on'|translate}}{{'sea'|translate}} </mat-option>
+                <mat-option value="firstLine"> {{'first'|translate}}-{{'line'|translate}} </mat-option>
+                <mat-option value="secondLine"> {{'second'|translate}}-{{'line'|translate}} </mat-option>
+                <mat-option value="thirdLine"> {{'third'|translate}}-{{'line'|translate}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="{{'house'|translate}} {{'type'|translate}}" name="housetype" [(ngModel)]="housetypeSelected">
+                <mat-option value="all" selected> {{'all'|translate}} </mat-option>
+                <mat-option value="apartment"> {{'apartment'|translate}} </mat-option>
+                <mat-option value="privateHouse"> {{'private' |translate}} {{'house'|translate}} </mat-option>
+                <mat-option value="blocks"> {{'blocks'|translate}} </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="accent" class="custom-button">{{'search'|translate}}</button>
+    </form>
+</mat-dialog-content>
