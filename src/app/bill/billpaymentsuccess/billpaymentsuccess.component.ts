@@ -12,9 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class BillPaymentSuccessComponent implements OnInit {
   paymentResponse: any;
-  receiptLink: string;
   currentDate: Date = new Date();
-  emailString: EmailValidator;
   constructor(private route: ActivatedRoute,
     private af: AngularFireDatabase,
     private router: Router,
@@ -22,7 +20,6 @@ export class BillPaymentSuccessComponent implements OnInit {
     private localstorage: LocalStorageService
   ) {
     this.paymentResponse = this.route.snapshot.params;
-    console.log('paymentResponse', this.paymentResponse);
     const savedData = {
       'trackId': this.paymentResponse.trackid,
       'result' : this.paymentResponse.result,
@@ -35,32 +32,23 @@ export class BillPaymentSuccessComponent implements OnInit {
       'date' : this.paymentResponse.postdate,
       'time' : Math.round((new Date()).getTime() * 1000),
     };
-    console.log('billsuccess', savedData);
     this.af.object('/No5tha/receiptResponse/' + this.paymentResponse.refno).update(savedData)
       .catch((error) => {
         console.error(error);
       });
-
-    // const updateObj = this.localstorage.get('cacheBillItem');
-    // updateObj['isPaid'] = true;
-    // this.af.object('/No5tha/Receipts/' + this.paymentResponse.refno).update(updateObj)
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
   }
 
   ngOnInit() {}
 
-  sendEmail() {
+  sendEmail(email) {
     const sendObj = {
       'type' : 'bill',
-      'to' : this.emailString,
+      'to' : email,
       'id' : this.paymentResponse.trackid
     };
-    console.log(sendObj);
     this.af.object('No5tha/emailOrder/' + this.paymentResponse.refno).update(sendObj)
       .then(() => {
-        window.location.href = this.receiptLink;
+        window.location.href = 'home';
       })
       .catch((error) => {
         console.error(error);

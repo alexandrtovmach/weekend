@@ -203,9 +203,9 @@ export const routerConfig: Route[] = [
                     children: [{
                         path: ':auth',
                         children: [{
-                            path: ':trackid',
+                            path: ':refno',
                             children: [{
-                                path: ':refno',
+                                path: ':trackid',
                                 children: [{
                                     path: ':contact',
                                     children: [{

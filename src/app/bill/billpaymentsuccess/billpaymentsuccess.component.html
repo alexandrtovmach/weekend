@@ -42,16 +42,18 @@
             </tr>
 
         </table>
-        <h3 class="successMsg">Transaction was successful</h3>
-        <div class=" success-icon">
-            <fa name="check-circle" size="4x"></fa>
-        </div>
-        <input type="text" [placeholder]="'email'|translate" [(ngModel)]="emailString">
-        <button mat-raised-button color="accent" (click)="sendEmail()">Send</button><br/>
-        <p>Your Receipt link is: <a href="" target="#">{{receiptLink}}</a></p>
-        <br/>
-        <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>
 
+        <h3 class="successMsg">Transaction was successful</h3>
+        <div class="result success">
+            <div class="success-icon">
+                <fa name="check-circle" size="4x"></fa>
+            </div>
+    
+            <input #email matInput type="email" [placeholder]="'email'|translate">
+            <button mat-raised-button (click)="sendEmail(email.value)" [disabled]="!email.value" [title]="email.value? '': 'enter email'" [ngStyle]="{'background-color': email.value? '': 'grey', 'color': email.value? '': 'black'}">Send</button>
+        </div>
+
+        <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>
     </mat-card-content>
 
 </mat-card>

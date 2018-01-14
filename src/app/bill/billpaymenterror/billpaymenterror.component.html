@@ -43,12 +43,14 @@
             </tr>
 
         </table>
-        <h3 class="successMsg">There was an error</h3>
-        <div class=" success-icon">
-            <fa name="check-circle" size="4x"></fa>
-        </div>
 
-        <br/>
+        <h3 class="successMsg">There was an error</h3>
+        <div class="result success">
+            <div class="success-icon">
+                <fa name="exclamation-circle" size="4x"></fa>
+            </div>
+            <a mat-raised-button [href]="'https://www.weekendq8.com/receipt/' + paymentResponse.trackid">Try again</a>
+        </div>
         <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>
 
     </mat-card-content>

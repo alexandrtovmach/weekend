@@ -33,7 +33,6 @@ export class BillPaymentErrorComponent implements OnInit {
       'date' : this.paymentResponse.postdate,
       'time' : Math.round((new Date()).getTime() * 1000),
     };
-    console.log('billerror', savedData);
     this.af.object('/No5tha/receiptResponse/' + orderId).update(savedData)
       .catch((error) => {
         console.error(error);
