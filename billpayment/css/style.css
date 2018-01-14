@@ -1,0 +1,74 @@
+body{
+    font-size: 16px;
+
+}
+.first-row{
+    background: #D8D8D8;
+    min-height: 30px;
+}
+.language-change-button{
+    background: transparent;
+    border: 1px white solid;
+    border-radius: 9px; 
+    margin: 2px 7px;;
+    color: blue;
+}
+.header-time{  
+    padding-left: 90px;
+}
+.second-row{
+   background: linear-gradient(-90deg, blue, green);
+    min-height: 180px;
+}
+.logo-css{
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+    background: #D8D8D8;
+   
+}
+.third-row{
+    color: #2325C6;
+    padding: 5px 15px;
+}
+.input-overwrite{
+    background: #F0F0F0;
+}
+.div-blue{
+    color: blue;
+    font-weight: 600;
+}
+.green-border-row{
+    border: 2px solid #4CB050;
+    padding: 25px;
+    margin: 1px;
+    border-radius: 10px;
+    margin-top: -37px;
+}
+.green-circle{
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    background: #4CB050;
+}
+.ok-sign{
+    padding: 20px;
+    font-size: 60px  !important;
+    color: #C8FD8F;
+}
+.yellow-border{
+    border: 2px solid #FFC928;
+}
+.red-border{
+    border: 2px solid #FF2700;
+}
+.company-desc{
+    padding-top: 40px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+
+
+
+

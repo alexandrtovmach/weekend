@@ -56,6 +56,9 @@ import { BillService } from './services/bill.service';
 import { PaymentSuccessComponent } from './payments/payment-success/payment-success.component';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { PaymentErrorComponent } from './payments/payment-error/payment-error.component';
+import { BillComponent } from './bill/bill.component';
+import { BillPaymentSuccessComponent } from './bill/billpaymentsuccess/billpaymentsuccess.component';
+import { BillPaymentErrorComponent } from './bill/billpaymenterror/billpaymenterror.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -122,6 +125,9 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     PaymentSuccessComponent,
     ReceiptComponent,
     PaymentErrorComponent,
+    BillComponent,
+    BillPaymentSuccessComponent,
+    BillPaymentErrorComponent
   ],
   entryComponents: [GalleryComponent, LoginComponent, PhoneconfirmComponent, RequestedhousedtlComponent, SearchboxComponent,
   MapviewComponent, FavhousesdtlComponent, DialogOverviewExampleDialogComponent,

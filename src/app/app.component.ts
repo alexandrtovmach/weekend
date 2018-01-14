@@ -19,8 +19,8 @@ export class AppComponent {
   constructor(public afAuth: AngularFireAuth, private router: Router, private userService: UserService,
     private translate: TranslateService) {
       translate.addLangs(['en', 'ar']);
-      translate.setDefaultLang('ar');
-      translate.use('ar');
+      translate.setDefaultLang('en');
+      translate.use('en');
 
     this.afAuth.authState.subscribe(user => {
       if (user) {

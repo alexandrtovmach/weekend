@@ -26,7 +26,7 @@
     "result": "result",
     "found": "found",
     "kd": "KD",
-    "price": "price",
+    "price": "Price",
     "one": "one",
     "night": "night",
     "login": "login",
@@ -90,7 +90,7 @@
     "complete": "",
     "info": "",
     "name": "",
-    "email": "",
+    "email": "Email",
     "contact": "",
     "save": "",
     "is": "",
@@ -145,5 +145,7 @@
     "floors": "",
     "street": "",
     "surburb": "",
-    "unit": ""
+    "unit": "",
+    "discount": "Discount",
+    "payWith": "Pay with"
 }

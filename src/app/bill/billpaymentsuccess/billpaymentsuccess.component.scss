@@ -1,0 +1,65 @@
+.hidden-header {
+    width: 100%;
+    height: 97px;
+    opacity: 0;
+}
+.header {
+    width: 100%;
+    height: 20px;
+    background-color: lightgray;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    .langWrap {
+        position: absolute;
+        left: 0;
+        width: 20px;
+        overflow: hidden;
+        transition: 0.5s;
+        &:hover {
+            width: 45px;
+        }
+
+        .langPicker {
+            display: flex;
+            justify-content: space-between;
+            width: 45px;
+    
+            >div {
+                cursor: pointer;
+                min-width: 20px;
+                height: 20px;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: lightgray;
+                border: 1px solid grey;
+            }
+        }
+    }
+    
+}
+.headerpart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .img-logo {
+        margin: 0;
+    }
+}
+
+.email-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+input, .pay-button {
+    border-radius: 5px;
+    padding: 5px;
+}
+.pay-button {
+    background: lightgray;
+    width: 100%;
+}

@@ -1,0 +1,54 @@
+<div class="hidden-header"></div>
+<mat-card class="card-booking-review">
+
+    <mat-card-header class="header">
+        <div class="langWrap">
+            <div class="langPicker" [ngStyle]="{'flex-direction': (translate.currentLang === 'en')? 'row': 'row-reverse'}">
+                <div (click)="translate.use('en')">en</div>
+                <div (click)="translate.use('ar')">ar</div>
+            </div>
+        </div>
+        <mat-card-title>{{ currentDate | date: 'd MMM y, h:mm a' }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="headerpart">
+            <img src="assets/img/logo.png" width="150" class="img-circle img-logo">
+            <h5 class="text-align">{{billInfo?.companyData.name}}</h5>
+        </div>
+
+        <table class="table" *ngIf="!billInfo?.isPaid">
+            <tr>
+                <th colspan="2">Receipt Number:{{billInfo?.ID}}</th>
+            </tr>
+            <tr>
+                <td>{{'price'|translate}}</td>
+                <td>{{'kd'|translate}}{{billInfo?.items[0].price}}</td>
+            </tr>
+            <tr>
+                <td>{{billInfo?.items[1].description[translate.currentLang]|translate}}</td>
+                <td>{{'kd'|translate}}{{billInfo?.items[1].price}}</td>
+            </tr>
+            <tr>
+                <td>{{billInfo?.items[2].description[translate.currentLang] |translate}}</td>
+                <td>{{'kd'|translate}}{{billInfo?.items[2].price}}</td>
+            </tr>
+            <tr>
+                <th>{{'total'|translate}}</th>
+                <td>{{'kd'|translate}}{{ billInfo?.total }}</td>
+            </tr>
+
+        </table>
+
+        <label class="email-input">
+            Send accept to:
+            <input type="email" [placeholder]="'email'|translate" [ngModel]="email">
+        </label>
+
+        <button class="pay-button" (click)="payReq()">{{'payWith'|translate}}</button>
+
+        <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>
+
+    </mat-card-content>
+
+</mat-card>
