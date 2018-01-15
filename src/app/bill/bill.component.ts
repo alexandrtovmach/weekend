@@ -18,7 +18,7 @@ export class BillComponent implements OnInit {
   email: EmailValidator;
   constructor(private af: AngularFireDatabase,
               private route: ActivatedRoute,
-              private translate: TranslateService,
+              public translate: TranslateService,
               private http: Http,
               private localstorage: LocalStorageService) {
 

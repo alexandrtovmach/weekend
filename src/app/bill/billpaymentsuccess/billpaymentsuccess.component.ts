@@ -16,7 +16,7 @@ export class BillPaymentSuccessComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private af: AngularFireDatabase,
     private router: Router,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private localstorage: LocalStorageService
   ) {
     this.paymentResponse = this.route.snapshot.params;
