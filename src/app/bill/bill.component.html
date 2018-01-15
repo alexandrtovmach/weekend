@@ -16,26 +16,21 @@
             <img src="assets/img/logo.png" width="150" class="img-circle img-logo">
             <h5 class="text-align">{{billInfo?.companyData.name}}</h5>
         </div>
-
-        <table class="table" *ngIf="billInfo">
+        <table class="table" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}" *ngIf="billInfo">
             <tr>
-                <th colspan="2">Receipt Number:{{billInfo?.ID}}</th>
+                <th colspan="2" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">{{'receipt'|translate}} {{'number'|translate}}:  {{billInfo?.ID}}</th>
             </tr>
             <tr>
-                <td>{{'price'|translate}}</td>
-                <td>{{'kd'|translate}}{{billInfo?.items[0].price}}</td>
+                <td>{{'price'|translate}}: {{'kd'|translate}}{{billInfo?.items[0].price}}</td>
             </tr>
             <tr>
-                <td>{{billInfo?.items[1].description[translate.currentLang]|translate}}</td>
-                <td>{{'kd'|translate}}{{billInfo?.items[1].price}}</td>
+                <td>{{billInfo?.items[1].description[translate.currentLang]|translate}}: {{'kd'|translate}}{{billInfo?.items[1].price}}</td>
             </tr>
             <tr>
-                <td>{{billInfo?.items[2].description[translate.currentLang] |translate}}</td>
-                <td>{{'kd'|translate}}{{billInfo?.items[2].price}}</td>
+                <td>{{billInfo?.items[2].description[translate.currentLang] |translate}}: {{'kd'|translate}}{{billInfo?.items[2].price}}</td>
             </tr>
             <tr>
-                <th>{{'total'|translate}}</th>
-                <td>{{'kd'|translate}}{{ billInfo?.total }}</td>
+                <td>{{'total'|translate}}: {{'kd'|translate}}{{ billInfo?.total }}</td>
             </tr>
 
         </table>
