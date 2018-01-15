@@ -58,7 +58,7 @@ export class BillComponent implements OnInit {
     const options = new RequestOptions({ headers: headers });
     const data = {
       trackid: this.billInfo.ID,
-      amount: this.billInfo.total + this.billInfo.items[1].price,
+      amount: this.billInfo.total,
       phone: localStorage.getItem('phoneNumber'),
       orderId: this.billInfo.ID
     };

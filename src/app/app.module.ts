@@ -59,6 +59,7 @@ import { PaymentErrorComponent } from './payments/payment-error/payment-error.co
 import { BillComponent } from './bill/bill.component';
 import { BillPaymentSuccessComponent } from './bill/billpaymentsuccess/billpaymentsuccess.component';
 import { BillPaymentErrorComponent } from './bill/billpaymenterror/billpaymenterror.component';
+import { DateLocalePipe } from './bill/dateLocalePipe.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -127,7 +128,8 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     PaymentErrorComponent,
     BillComponent,
     BillPaymentSuccessComponent,
-    BillPaymentErrorComponent
+    BillPaymentErrorComponent,
+    DateLocalePipe
   ],
   entryComponents: [GalleryComponent, LoginComponent, PhoneconfirmComponent, RequestedhousedtlComponent, SearchboxComponent,
   MapviewComponent, FavhousesdtlComponent, DialogOverviewExampleDialogComponent,

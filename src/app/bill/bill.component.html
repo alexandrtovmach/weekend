@@ -8,7 +8,7 @@
                 <div (click)="translate.use('ar')">ar</div>
             </div>
         </div>
-        <mat-card-title>{{ currentDate | date: 'd MMM y, h:mm a' }}</mat-card-title>
+        <mat-card-title>{{ currentDate | localizedDate }}</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
