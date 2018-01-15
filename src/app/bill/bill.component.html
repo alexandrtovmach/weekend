@@ -20,14 +20,8 @@
             <tr>
                 <th colspan="2" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">{{'receipt'|translate}} {{'number'|translate}}:  {{billInfo?.ID}}</th>
             </tr>
-            <tr>
-                <td>{{'price'|translate}}: {{'kd'|translate}}{{billInfo?.items[0].price}}</td>
-            </tr>
-            <tr>
-                <td>{{billInfo?.items[1].description[translate.currentLang]|translate}}: {{'kd'|translate}}{{billInfo?.items[1].price}}</td>
-            </tr>
-            <tr>
-                <td>{{billInfo?.items[2].description[translate.currentLang] |translate}}: {{'kd'|translate}}{{billInfo?.items[2].price}}</td>
+            <tr *ngFor="let item of billInfo?.items">
+                <td>{{item.description[translate.currentLang]|translate}}: {{'kd'|translate}}{{item.price}}</td>
             </tr>
             <tr>
                 <td>{{'total'|translate}}: {{'kd'|translate}}{{ billInfo?.total }}</td>

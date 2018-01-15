@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class BillPaymentSuccessComponent implements OnInit {
   paymentResponse: any;
+  items: any;
   currentDate: Date = new Date();
   constructor(private route: ActivatedRoute,
     private af: AngularFireDatabase,
@@ -36,6 +37,11 @@ export class BillPaymentSuccessComponent implements OnInit {
     this.af.object('/No5tha/receiptResponse/' + this.paymentResponse.refno).update(savedData)
       .catch((error) => {
         console.error(error);
+      });
+
+    this.af.object('/No5tha/Receipts/' + this.paymentResponse.trackid).valueChanges()
+      .subscribe( billdata => {
+        this.items = billdata['items'];
       });
   }
 

@@ -25,7 +25,10 @@
             <tr>
                 <td>{{'amount'|translate}}: {{'kd'|translate}}{{paymentResponse.amount}}</td>
             </tr>
-
+            <tr *ngFor="let item of items">
+                <td>{{item.description[translate.currentLang]|translate}}: {{'kd'|translate}}{{item.price}}</td>
+            </tr>
+            
             <tr>
                 <td>{{'paymentId'|translate}}: {{paymentResponse.paymentid}}</td>
             </tr>

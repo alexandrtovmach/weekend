@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class BillPaymentErrorComponent implements OnInit {
   paymentResponse: any;
   orderId: string;
+  items: any;
   currentDate: Date = new Date();
   constructor(private route: ActivatedRoute,
     private af: AngularFireDatabase,
@@ -36,9 +37,13 @@ export class BillPaymentErrorComponent implements OnInit {
       .catch((error) => {
         console.error(error);
       });
-    }
 
-  ngOnInit() {
+    this.af.object('/No5tha/Receipts/' + this.paymentResponse.trackid).valueChanges()
+      .subscribe( billdata => {
+        this.items = billdata['items'];
+      });
   }
+
+  ngOnInit() {}
 
 }
