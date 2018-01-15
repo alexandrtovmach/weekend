@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" *ngIf="!isBillPage">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -28,7 +28,7 @@
 </nav>
 <router-outlet>
 </router-outlet>
-<div class="container">
+<div class="container" *ngIf="!isBillPage">
     <div class="row footer">
         <div class="col-sm-2">
             <p class="text-left" style="color:#767676;">&copy; Weekendq8</p>

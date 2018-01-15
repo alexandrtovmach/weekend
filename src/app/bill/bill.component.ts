@@ -23,32 +23,29 @@ export class BillComponent implements OnInit {
               private localstorage: LocalStorageService) {
 
     const billid = this.route.snapshot.params.billid;
-    this.af.object('/No5tha/Receipts/' + billid).valueChanges()
+    this.af.object('/WeekendMoney/Receipts/' + billid).valueChanges()
       .subscribe( billdata => {
-        if (billdata['isPaid']) {
-          return this.getBill(billdata['ID']);
-        }
-        this.billInfo = billdata;
-        this.localstorage.set('cacheBillItem', billdata);
-        this.currentDate = new Date(+billdata['ID']);
         console.log(billdata);
+        if (billdata['isPaid']) {
+          // tslint:disable-next-line:max-line-length
+          window.location.href = `${window.location.origin}/billpaymentsuccess/${billdata['paymentId']}/CAPTURED/${billdata['cardPostDate'] || false}/${billdata['transictionId']}/false/false/${billdata['trackId']}/false/false/${billdata['total']}`;
+        }
+        this.af.object('/WeekendMoney/companies/' + billdata['companyId']).valueChanges()
+          .subscribe( company => {
+            this.billInfo = billdata;
+            this.billInfo.company = company;
+            this.localstorage.set('cacheBillItem', billdata);
+            this.currentDate = new Date(+billdata['ID']);
+          });
       });
     }
 
   ngOnInit() {}
 
-  getBill(billId) {
-    this.af.object('/No5tha/receiptResponse/' + billId).valueChanges()
-      .subscribe( billdata => {
-        // tslint:disable-next-line:max-line-length
-        window.location.href = `${window.location.origin}/billpaymentsuccess/${billdata['paymentId']}/${billdata['result']}/${billdata['date']}/${billdata['transictionId']}/${billdata['auth']}/${billdata['referenceId']}/${billdata['trackId']}/false/false/${billdata['amount']}`;
-      });
-  }
 
   payReq() {
     this.InitilizeKnetRequest()
       .subscribe( result => {
-        // console.log(result);
         window.location.href = result.location + '?paymentID=' + result.paymentID;
       });
   }

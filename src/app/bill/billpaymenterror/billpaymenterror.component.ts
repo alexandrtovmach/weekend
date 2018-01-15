@@ -13,6 +13,7 @@ export class BillPaymentErrorComponent implements OnInit {
   paymentResponse: any;
   orderId: string;
   items: any;
+  company: any;
   currentDate: Date = new Date();
   constructor(private route: ActivatedRoute,
     private af: AngularFireDatabase,
@@ -31,16 +32,22 @@ export class BillPaymentErrorComponent implements OnInit {
       'referenceId' : this.paymentResponse.refno,
       'amount' : this.paymentResponse.paymentid,
       'date' : this.paymentResponse.postdate,
-      'time' : Math.round((new Date()).getTime() * 1000),
+      'time' : Math.round((new Date()).getTime()),
     };
-    this.af.object('/No5tha/receiptResponse/' + this.paymentResponse.refno).update(savedData)
-      .catch((error) => {
-        console.error(error);
-      });
 
-    this.af.object('/No5tha/Receipts/' + this.paymentResponse.trackid).valueChanges()
+    this.af.object('/WeekendMoney/Receipts/' + this.paymentResponse.trackid).valueChanges()
       .subscribe( billdata => {
         this.items = billdata['items'];
+        this.af.object('/WeekendMoney/companies/' + billdata['companyId']).valueChanges()
+          .subscribe( company => {
+            this.company = company;
+          });
+        savedData['companyId'] = billdata['companyId'];
+        savedData['userUID'] = billdata['userUID'];
+        this.af.object('/WeekendMoney/receiptResponse/' + this.paymentResponse.refno).update(savedData)
+          .catch((error) => {
+            console.error(error);
+          });
       });
   }
 

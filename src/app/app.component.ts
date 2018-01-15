@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Rx';
 import { UserService } from './services/user.service';
 import { Router } from '@angular/router';
 import { House } from './services/house';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -11,11 +11,12 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   photoUrl: string;
   profile: any;
   loginstatus: boolean;
   profileName: string;
+  isBillPage: Boolean = false;
   constructor(public afAuth: AngularFireAuth, private router: Router, private userService: UserService,
     private translate: TranslateService) {
       translate.addLangs(['en', 'ar']);
@@ -63,6 +64,11 @@ this.profileName = user.displayName;
   //     }
   //     });
   // }
+
+  ngOnInit() {
+    this.isBillPage = window.location.href.includes('bill');
+  }
+
   logout() {
  this.afAuth.auth.signOut();
  this.router.navigate(['/home']);

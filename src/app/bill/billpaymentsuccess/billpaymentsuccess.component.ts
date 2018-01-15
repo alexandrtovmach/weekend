@@ -13,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class BillPaymentSuccessComponent implements OnInit {
   paymentResponse: any;
   items: any;
+  company: any;
   currentDate: Date = new Date();
   constructor(private route: ActivatedRoute,
     private af: AngularFireDatabase,
@@ -32,16 +33,22 @@ export class BillPaymentSuccessComponent implements OnInit {
       'referenceId' : this.paymentResponse.refno,
       'amount' : this.paymentResponse.amount,
       'date' : this.paymentResponse.postdate,
-      'time' : Math.round((new Date()).getTime() * 1000),
+      'time' : Math.round((new Date()).getTime()),
     };
-    this.af.object('/No5tha/receiptResponse/' + this.paymentResponse.refno).update(savedData)
-      .catch((error) => {
-        console.error(error);
-      });
 
-    this.af.object('/No5tha/Receipts/' + this.paymentResponse.trackid).valueChanges()
+    this.af.object('/WeekendMoney/Receipts/' + this.paymentResponse.trackid).valueChanges()
       .subscribe( billdata => {
         this.items = billdata['items'];
+        this.af.object('/WeekendMoney/companies/' + billdata['companyId']).valueChanges()
+          .subscribe( company => {
+            this.company = company;
+          });
+        savedData['companyId'] = billdata['companyId'];
+        savedData['userUID'] = billdata['userUID'];
+        this.af.object('/WeekendMoney/receiptResponse/' + this.paymentResponse.transid).update(savedData)
+          .catch((error) => {
+            console.error(error);
+          });
       });
   }
 
@@ -49,11 +56,11 @@ export class BillPaymentSuccessComponent implements OnInit {
 
   sendEmail(email) {
     const sendObj = {
-      'type' : 'bill',
+      'type' : 'receipt',
       'to' : email,
       'id' : this.paymentResponse.trackid
     };
-    this.af.object('No5tha/emailOrder/' + this.paymentResponse.refno).update(sendObj)
+    this.af.object('WeekendMoney/emailOrder/' + this.paymentResponse.refno).update(sendObj)
       .then(() => {
         window.location.href = 'home';
       })

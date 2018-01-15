@@ -1,4 +1,3 @@
-<div class="hidden-header"></div>
 <mat-card class="card-booking-review">
     <mat-card-header class="header">
         <div class="langWrap">
@@ -12,7 +11,8 @@
 
     <mat-card-content>
         <div class="headerpart">
-            <img src="assets/img/logo.png" width="100" height="100" class="img-circle img-logo">
+            <img [src]="company?.photoURL" width="100" class="img-circle img-logo" *ngIf="company">
+            <h5 class="text-align">{{company?.description[translate.currentLang]}}</h5>
         </div>
 
         <table class="table" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">
@@ -42,14 +42,13 @@
         </table>
 
         <h3 class="successMsg">{{'transactionWasSuccessful'|translate}}</h3>
-        <div class="result success">
+        <form class="result success" #form="ngForm" (submit)="sendEmail(email)">
             <div class="success-icon">
                 <fa name="check-circle" size="4x"></fa>
             </div>
-    
-            <input #email matInput type="email" [placeholder]="'email'|translate">
-            <button mat-raised-button (click)="sendEmail(email.value)" [disabled]="!email.value" [title]="email.value? '': 'enter email'" [ngStyle]="{'background-color': email.value? '': 'grey', 'color': email.value? '': 'black'}">{{'send'|translate}}</button>
-        </div>
+            <input matInput #email name="email" [placeholder]="'email'|translate" ngModel email required>
+            <button mat-raised-button [disabled]="!form.valid" [title]="form.valid? '': 'enter email'" [ngStyle]="{'background-color': form.valid? '': 'grey', 'color': form.valid? '': 'black'}">{{'send'|translate}}</button>
+        </form>
 
         <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>
     </mat-card-content>
