@@ -30,6 +30,7 @@ export class BillComponent implements OnInit {
         }
         this.billInfo = billdata;
         this.localstorage.set('cacheBillItem', billdata);
+        this.currentDate = new Date(+billdata['ID']);
         console.log(billdata);
       });
     }

@@ -147,13 +147,13 @@
     "street": "شارع",
     "surburb": "ضاحية",
     "unit": "وحدة",
-    "discount": "",
-    "payWith": "",
-    "date": "",
-    "transactionId": "",
-    "trackId": "",
-    "paymentId": "",
-    "transactionWasSuccessful": "",
-    "thereWasError": "",
-    "tryAgain": ""
+    "discount": "خصم",
+    "payWith": "إدفع مع",
+    "date": "تاريخ",
+    "transactionId": "رقم الحوالة",
+    "trackId": "رقم الفاتورة",
+    "paymentId": "رقم الفاتورة",
+    "transactionWasSuccessful": "تمت العملية بنجاح",
+    "thereWasError": "حصل خطأ في التحويل",
+    "tryAgain": "حاول مرة أخرى"
 }

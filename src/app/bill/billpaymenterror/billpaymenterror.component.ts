@@ -19,8 +19,7 @@ export class BillPaymentErrorComponent implements OnInit {
     private router: Router
   ) {
     this.paymentResponse = this.route.snapshot.params;
-    const orderId = this.paymentResponse.orderid;
-    this.orderId = this.paymentResponse.orderid;
+    this.currentDate = new Date(+this.paymentResponse.trackid);
     const savedData = {
       'trackId': this.paymentResponse.trackid,
       'result' : this.paymentResponse.result,
@@ -33,7 +32,7 @@ export class BillPaymentErrorComponent implements OnInit {
       'date' : this.paymentResponse.postdate,
       'time' : Math.round((new Date()).getTime() * 1000),
     };
-    this.af.object('/No5tha/receiptResponse/' + orderId).update(savedData)
+    this.af.object('/No5tha/receiptResponse/' + this.paymentResponse.refno).update(savedData)
       .catch((error) => {
         console.error(error);
       });

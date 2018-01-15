@@ -17,7 +17,7 @@
             <h5 class="text-align">{{billInfo?.companyData.name}}</h5>
         </div>
 
-        <table class="table" *ngIf="!billInfo">
+        <table class="table" *ngIf="billInfo">
             <tr>
                 <th colspan="2">Receipt Number:{{billInfo?.ID}}</th>
             </tr>

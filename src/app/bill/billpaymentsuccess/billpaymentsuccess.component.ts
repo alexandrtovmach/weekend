@@ -20,6 +20,7 @@ export class BillPaymentSuccessComponent implements OnInit {
     private localstorage: LocalStorageService
   ) {
     this.paymentResponse = this.route.snapshot.params;
+    this.currentDate = new Date(+this.paymentResponse.trackid);
     const savedData = {
       'trackId': this.paymentResponse.trackid,
       'result' : this.paymentResponse.result,
