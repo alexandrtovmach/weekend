@@ -146,5 +146,14 @@
     "floors": "طوابق",
     "street": "شارع",
     "surburb": "ضاحية",
-    "unit": "وحدة"
+    "unit": "وحدة",
+    "discount": "",
+    "payWith": "",
+    "date": "",
+    "transactionId": "",
+    "trackId": "",
+    "paymentId": "",
+    "transactionWasSuccessful": "",
+    "thereWasError": "",
+    "tryAgain": ""
 }

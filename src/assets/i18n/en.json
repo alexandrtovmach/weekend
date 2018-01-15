@@ -118,7 +118,7 @@
     "review": "",
     "next": "",
     "choose": "",
-    "paymentId": "Payment ID",
+    "payment": "Payment",
     "back": "",
     "cash": "",
     "online": "",
@@ -151,6 +151,7 @@
     "date": "Date",
     "transactionId": "Transaction ID",
     "trackId": "Track ID",
+    "paymentId": "Payment ID",
     "transactionWasSuccessful": "Transaction was successful",
     "thereWasError": "There was an error",
     "tryAgain": "Try again"

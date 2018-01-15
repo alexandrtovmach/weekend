@@ -40,7 +40,7 @@ export class BillComponent implements OnInit {
     this.af.object('/No5tha/receiptResponse/' + billId).valueChanges()
       .subscribe( billdata => {
         // tslint:disable-next-line:max-line-length
-        // window.location.href = `${window.location.origin}/billpaymentsuccess/${billdata['paymentId']}/${billdata['result']}/${billdata['date']}/${billdata['transictionId']}/${billdata['auth']}/${billdata['referenceId']}/${billdata['trackId']}/false/false/${billdata['amount']}`;
+        window.location.href = `${window.location.origin}/billpaymentsuccess/${billdata['paymentId']}/${billdata['result']}/${billdata['date']}/${billdata['transictionId']}/${billdata['auth']}/${billdata['referenceId']}/${billdata['trackId']}/false/false/${billdata['amount']}`;
       });
   }
 
