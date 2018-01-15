@@ -15,42 +15,37 @@
             <img src="assets/img/logo.png" width="100" height="100" class="img-circle img-logo">
         </div>
 
-        <table class="table">
+        <table class="table" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">
             <tr>
-                <th colspan="2">Receipt Number: {{paymentResponse.trackid}}</th>
+                <th colspan="2" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">{{'receipt'|translate}} {{'number'|translate}}: {{paymentResponse.trackid}}</th>
             </tr>
             <tr>
-                <td>Date </td>
-                <td>{{paymentResponse.postdate}}</td>
+                <td>{{'date'|translate}}: {{paymentResponse.postdate.slice(0, 2) + '/' + paymentResponse.postdate.slice(-2)}}</td>
             </tr>
             <tr>
-                <td>Amount</td>
-                <td>{{'kd'|translate}}{{paymentResponse.amount}}</td>
+                <td>{{'amount'|translate}}: {{'kd'|translate}}{{paymentResponse.amount}}</td>
             </tr>
 
             <tr>
-                <td>Payment ID</td>
-                <td>{{paymentResponse.paymentid}}</td>
+                <td>{{'paymentId'|translate}}: {{paymentResponse.paymentid}}</td>
             </tr>
             <tr>
-                <td>Transaction ID</td>
-                <td>{{paymentResponse.transid}}</td>
+                <td>{{'transactionId'|translate}}: {{paymentResponse.transid}}</td>
             </tr>
             <tr>
-                <td>Track ID</td>
-                <td>{{paymentResponse.trackid}}</td>
+                <td>{{'trackId'|translate}}: {{paymentResponse.trackid}}</td>
             </tr>
 
         </table>
 
-        <h3 class="successMsg">Transaction was successful</h3>
+        <h3 class="successMsg">{{'transactionWasSuccessful'|translate}}</h3>
         <div class="result success">
             <div class="success-icon">
                 <fa name="check-circle" size="4x"></fa>
             </div>
     
             <input #email matInput type="email" [placeholder]="'email'|translate">
-            <button mat-raised-button (click)="sendEmail(email.value)" [disabled]="!email.value" [title]="email.value? '': 'enter email'" [ngStyle]="{'background-color': email.value? '': 'grey', 'color': email.value? '': 'black'}">Send</button>
+            <button mat-raised-button (click)="sendEmail(email.value)" [disabled]="!email.value" [title]="email.value? '': 'enter email'" [ngStyle]="{'background-color': email.value? '': 'grey', 'color': email.value? '': 'black'}">{{'send'|translate}}</button>
         </div>
 
         <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>

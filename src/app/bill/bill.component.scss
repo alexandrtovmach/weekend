@@ -55,11 +55,38 @@
     flex-direction: column;
     width: 100%;
 }
+.gt-secured-seal {
+    display: block;
+    float: right;
+    height: 50px;
+    width: 100px;
+    margin: 10px 0;
+    text-decoration: none;
+    background-image: url('../../assets/img/gt-secured-seal.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 input, .pay-button {
     border-radius: 5px;
     padding: 5px;
 }
 .pay-button {
-    background: lightgray;
+    display: block;
+    position: relative;
+    background: #47b14d;;
     width: 100%;
+    height: 50px;
+    margin: 10px 0;
+    color: white;
+    text-transform: uppercase;
+    &:active {
+        background: #2d6930;;
+    }
+
+    >img {
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        height: 40px;
+    }
 }

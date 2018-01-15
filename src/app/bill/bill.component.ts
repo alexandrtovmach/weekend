@@ -25,13 +25,23 @@ export class BillComponent implements OnInit {
     const billid = this.route.snapshot.params.billid;
     this.af.object('/No5tha/Receipts/' + billid).valueChanges()
       .subscribe( billdata => {
+        if (billdata['isPaid']) {
+          return this.getBill(billdata['ID']);
+        }
         this.billInfo = billdata;
         this.localstorage.set('cacheBillItem', billdata);
         console.log(billdata);
       });
-   }
+    }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  getBill(billId) {
+    this.af.object('/No5tha/receiptResponse/' + billId).valueChanges()
+      .subscribe( billdata => {
+        // tslint:disable-next-line:max-line-length
+        // window.location.href = `${window.location.origin}/billpaymentsuccess/${billdata['paymentId']}/${billdata['result']}/${billdata['date']}/${billdata['transictionId']}/${billdata['auth']}/${billdata['referenceId']}/${billdata['trackId']}/false/false/${billdata['amount']}`;
+      });
   }
 
   payReq() {

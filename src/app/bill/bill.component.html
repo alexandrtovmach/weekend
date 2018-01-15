@@ -17,7 +17,7 @@
             <h5 class="text-align">{{billInfo?.companyData.name}}</h5>
         </div>
 
-        <table class="table" *ngIf="!billInfo?.isPaid">
+        <table class="table" *ngIf="!billInfo">
             <tr>
                 <th colspan="2">Receipt Number:{{billInfo?.ID}}</th>
             </tr>
@@ -40,12 +40,14 @@
 
         </table>
 
-        <label class="email-input">
+        <!-- <label class="email-input">
             Send accept to:
             <input type="email" [placeholder]="'email'|translate" [ngModel]="email">
-        </label>
-
-        <button class="pay-button" (click)="payReq()">{{'payWith'|translate}}</button>
+        </label> -->
+        <a class="gt-secured-seal" href="https://www.geotrust.com/ssl/ssl-site-seals/"></a>
+        <button class="pay-button" (click)="payReq()">{{'payWith'|translate}}
+            <img src="assets/img/knet.png">
+        </button>
 
         <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>
 

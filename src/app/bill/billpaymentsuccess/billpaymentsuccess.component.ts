@@ -28,7 +28,7 @@ export class BillPaymentSuccessComponent implements OnInit {
       'paymentId' : this.paymentResponse.paymentid,
       'transictionId' : this.paymentResponse.transid,
       'referenceId' : this.paymentResponse.refno,
-      'amount' : this.paymentResponse.paymentid,
+      'amount' : this.paymentResponse.amount,
       'date' : this.paymentResponse.postdate,
       'time' : Math.round((new Date()).getTime() * 1000),
     };
