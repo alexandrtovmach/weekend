@@ -45,10 +45,7 @@ export class BillPaymentSuccessComponent implements OnInit {
           });
         savedData['companyId'] = billdata['companyId'];
         savedData['userUID'] = billdata['userUID'];
-        this.af.object('/WeekendMoney/receiptResponse/' + this.paymentResponse.transid).update(savedData)
-          .catch((error) => {
-            console.error(error);
-          });
+        this.af.database.ref('/WeekendMoney/receiptResponse/').push(savedData);
       });
   }
 
