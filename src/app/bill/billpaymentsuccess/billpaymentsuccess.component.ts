@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmailValidator } from '@angular/forms/src/directives/validators';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { TranslateService } from '@ngx-translate/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-billpayment-success',
@@ -54,7 +55,7 @@ export class BillPaymentSuccessComponent implements OnInit {
   sendEmail(email) {
     const sendObj = {
       'type' : 'receipt',
-      'to' : email,
+      'to' : email.value,
       'id' : this.paymentResponse.trackid
     };
     this.af.database.ref('/WeekendMoney/emailOrder/').push(sendObj)

@@ -42,6 +42,17 @@ export class BillComponent implements OnInit {
 
   ngOnInit() {}
 
+  sendEmail(email) {
+    const sendObj = {
+      'type' : 'receipt',
+      'to' : email.value,
+      'id' : this.billInfo.ID
+    };
+    this.af.database.ref('/WeekendMoney/emailOrder/').push(sendObj)
+      .then(() => {
+        window.location.href = 'home';
+      });
+  }
 
   payReq() {
     this.InitilizeKnetRequest()
