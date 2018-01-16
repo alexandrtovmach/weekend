@@ -57,12 +57,9 @@ export class BillPaymentSuccessComponent implements OnInit {
       'to' : email,
       'id' : this.paymentResponse.trackid
     };
-    this.af.object('WeekendMoney/emailOrder/' + this.paymentResponse.refno).update(sendObj)
+    this.af.database.ref('/WeekendMoney/emailOrder/').push(sendObj)
       .then(() => {
         window.location.href = 'home';
-      })
-      .catch((error) => {
-        console.error(error);
       });
   }
 }
