@@ -1,4 +1,4 @@
-<mat-card class="card-booking-review">
+<mat-card class="card-booking-review" *ngIf="!billInfo?.isPaid">
 
     <mat-card-header class="header">
         <div class="langWrap">
@@ -39,6 +39,63 @@
 
         <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>
 
+    </mat-card-content>
+
+</mat-card>
+
+<mat-card class="card-booking-review successCard" *ngIf="billInfo?.isPaid">
+    <mat-card-header class="header">
+        <div class="langWrap">
+            <div class="langPicker" [ngStyle]="{'flex-direction': (translate.currentLang === 'en')? 'row': 'row-reverse'}">
+                <div (click)="translate.use('en')">en</div>
+                <div (click)="translate.use('ar')">ar</div>
+            </div>
+        </div>
+        <mat-card-title>{{ currentDate | localizedDate }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="headerpart">
+            <img [src]="billInfo?.company.photoURL" width="100" class="img-circle img-logo" *ngIf="company">
+            <h5 class="text-align">{{billInfo?.company.description[translate.currentLang]}}</h5>
+        </div>
+
+        <table class="table" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">
+            <tr>
+                <th colspan="2" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">{{'receipt'|translate}} {{'number'|translate}}: {{billInfo?.ID}}</th>
+            </tr>
+            <tr>
+                <td>{{'date'|translate}}: {{billInfo?.cardPostDate.slice(0, 2) + '/' + billInfo?.cardPostDate.slice(-2)}}</td>
+            </tr>
+            <tr>
+                <td>{{'amount'|translate}}: {{'kd'|translate}}{{billInfo?.total}}</td>
+            </tr>
+            <tr *ngFor="let item of items">
+                <td>{{item.description[translate.currentLang]|translate}}: {{'kd'|translate}}{{item.price}}</td>
+            </tr>
+
+            <tr>
+                <td>{{'paymentId'|translate}}: {{billInfo?.paymentId}}</td>
+            </tr>
+            <tr>
+                <td>{{'transactionId'|translate}}: {{billInfo?.transictionId}}</td>
+            </tr>
+            <tr>
+                <td>{{'trackId'|translate}}: {{billInfo?.ID}}</td>
+            </tr>
+
+        </table>
+
+        <h3 class="successMsg">{{'transactionWasSuccessful'|translate}}</h3>
+        <form class="result success" #form="ngForm" (submit)="sendEmail(email)">
+            <div class="success-icon">
+                <fa name="check-circle" size="4x"></fa>
+            </div>
+            <input matInput #email name="email" [placeholder]="'email'|translate" ngModel email required>
+            <button mat-raised-button [disabled]="!form.valid" [title]="form.valid? '': 'enter email'" [ngStyle]="{'background-color': form.valid? '': 'grey', 'color': form.valid? '': 'black'}">{{'send'|translate}}</button>
+        </form>
+
+        <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>
     </mat-card-content>
 
 </mat-card>

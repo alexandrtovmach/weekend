@@ -26,10 +26,10 @@ export class BillComponent implements OnInit {
     this.af.object('/WeekendMoney/Receipts/' + billid).valueChanges()
       .subscribe( billdata => {
         console.log(billdata);
-        if (billdata['isPaid']) {
-          // tslint:disable-next-line:max-line-length
-          window.location.href = `${window.location.origin}/billpaymentsuccess/${billdata['paymentId']}/CAPTURED/${billdata['cardPostDate'] || false}/${billdata['transictionId']}/false/false/${billdata['trackId']}/false/false/${billdata['total']}`;
-        }
+        // if (billdata['isPaid']) {
+        //   // tslint:disable-next-line:max-line-length
+        //   window.location.href = `${billdata['transictionId']}/false/false/${billdata['trackId']}/false/false/${billdata['total']}`;
+        // }
         this.af.object('/WeekendMoney/companies/' + billdata['companyId']).valueChanges()
           .subscribe( company => {
             this.billInfo = billdata;

@@ -91,3 +91,109 @@ input, .pay-button {
         height: 40px;
     }
 }
+
+.successCard {
+    $green: #47b14d;
+    
+    .header {
+        width: 100%;
+        height: 20px;
+        background-color: lightgray;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        .langWrap {
+            position: absolute;
+            left: 0;
+            width: 20px;
+            overflow: hidden;
+            transition: 0.5s;
+            &:hover {
+                width: 45px;
+            }
+    
+            .langPicker {
+                display: flex;
+                justify-content: space-between;
+                width: 45px;
+        
+                >div {
+                    cursor: pointer;
+                    min-width: 20px;
+                    height: 20px;
+                    border-radius: 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: lightgray;
+                    border: 1px solid grey;
+                }
+            }
+        }
+        
+    }
+    .headerpart {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    
+        .img-logo {
+            margin: 0;
+        }
+    }
+    
+    .email-input {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    input, .pay-button {
+        border-radius: 5px;
+        padding: 5px;
+    }
+    .pay-button {
+        background: lightgray;
+        width: 100%;
+    }
+    
+    .successMsg {
+        text-align: center;
+        color: $green;
+        font-size: 20px;
+    }
+    
+    .result {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: 3px solid $green;
+        border-radius: 10px;
+        margin: 25px 0;
+    
+        .success-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -25px;
+            width: 50px;
+            height: 50px;
+            color: $green;
+            background-color: white;
+            border-radius: 50%;
+        }
+    
+        >input {
+            margin-top: 10px;
+            width: 80%;
+        }
+        >button {
+            margin: 10px 0;
+            width: 80%;
+            background-color: $green;
+            color: white;
+            text-transform: uppercase;        
+        }
+    }
+}
