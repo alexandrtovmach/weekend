@@ -16,6 +16,8 @@ export class BillPaymentSuccessComponent implements OnInit {
   items: any;
   company: any;
   currentDate: Date = new Date();
+  now = new Date();
+  load = false;
   constructor(private route: ActivatedRoute,
     private af: AngularFireDatabase,
     private router: Router,
@@ -53,6 +55,7 @@ export class BillPaymentSuccessComponent implements OnInit {
   ngOnInit() {}
 
   sendEmail(email) {
+    this.load = true;
     const sendObj = {
       'type' : 'receipt',
       'to' : email.value,

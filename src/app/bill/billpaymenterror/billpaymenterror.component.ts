@@ -15,6 +15,7 @@ export class BillPaymentErrorComponent implements OnInit {
   items: any;
   company: any;
   currentDate: Date = new Date();
+  now = new Date();
   constructor(private route: ActivatedRoute,
     private af: AngularFireDatabase,
     public translate: TranslateService,

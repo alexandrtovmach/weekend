@@ -15,7 +15,9 @@ import { LocalStorageService } from 'angular-2-local-storage';
 export class BillComponent implements OnInit {
   billInfo: any;
   currentDate: Date = new Date();
+  now = new Date();
   email: EmailValidator;
+  load = false;
   constructor(private af: AngularFireDatabase,
               private route: ActivatedRoute,
               public translate: TranslateService,
@@ -25,11 +27,6 @@ export class BillComponent implements OnInit {
     const billid = this.route.snapshot.params.billid;
     this.af.object('/WeekendMoney/Receipts/' + billid).valueChanges()
       .subscribe( billdata => {
-        console.log(billdata);
-        // if (billdata['isPaid']) {
-        //   // tslint:disable-next-line:max-line-length
-        //   window.location.href = `${billdata['transictionId']}/false/false/${billdata['trackId']}/false/false/${billdata['total']}`;
-        // }
         this.af.object('/WeekendMoney/companies/' + billdata['companyId']).valueChanges()
           .subscribe( company => {
             this.billInfo = billdata;
@@ -48,6 +45,7 @@ export class BillComponent implements OnInit {
       'to' : email.value,
       'id' : this.billInfo.ID
     };
+    this.load = true;
     this.af.database.ref('/WeekendMoney/emailOrder/').push(sendObj)
       .then(() => {
         window.location.href = 'home';
@@ -55,6 +53,7 @@ export class BillComponent implements OnInit {
   }
 
   payReq() {
+    this.load = true;
     this.InitilizeKnetRequest()
       .subscribe( result => {
         window.location.href = result.location + '?paymentID=' + result.paymentID;

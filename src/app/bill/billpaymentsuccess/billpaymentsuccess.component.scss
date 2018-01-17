@@ -1,10 +1,4 @@
 $green: #47b14d;
-
-.hidden-header {
-    width: 100%;
-    height: 97px;
-    opacity: 0;
-}
 .header {
     width: 100%;
     height: 20px;
@@ -15,21 +9,22 @@ $green: #47b14d;
     .langWrap {
         position: absolute;
         left: 0;
-        width: 20px;
+        width: 50px;
+        height: 20px;
         overflow: hidden;
         transition: 0.5s;
         &:hover {
-            width: 45px;
+            height: 50px;
         }
 
         .langPicker {
             display: flex;
             justify-content: space-between;
-            width: 45px;
+            width: 50px;
     
             >div {
                 cursor: pointer;
-                min-width: 20px;
+                min-width: 50px;
                 height: 20px;
                 border-radius: 5px;
                 display: flex;
@@ -105,4 +100,15 @@ input, .pay-button {
         color: white;
         text-transform: uppercase;        
     }
+}
+
+
+.price {
+    font-weight: bold;
+    >span {
+        color: blue;
+    }
+}
+.example-margin {
+    margin: auto;
 }

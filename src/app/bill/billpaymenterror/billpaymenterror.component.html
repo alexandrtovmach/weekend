@@ -1,9 +1,9 @@
 <mat-card class="card-booking-review">
     <mat-card-header class="header">
         <div class="langWrap">
-            <div class="langPicker" [ngStyle]="{'flex-direction': (translate.currentLang === 'en')? 'row': 'row-reverse'}">
-                <div (click)="translate.use('en')">en</div>
-                <div (click)="translate.use('ar')">ar</div>
+            <div class="langPicker" [ngStyle]="{'flex-direction': (translate.currentLang === 'en')? 'column': 'column-reverse'}">
+                <div (click)="translate.use('en')">English</div>
+                <div (click)="translate.use('ar')">Arabic</div>
             </div>
         </div>
         <mat-card-title>{{ currentDate | localizedDate }}</mat-card-title>
@@ -11,6 +11,7 @@
 
     <mat-card-content>
         <div class="headerpart">
+            <h5 class="text-align">{{company?.name}}</h5>
             <img [src]="company.photoURL" width="100" class="img-circle img-logo" *ngIf="company">
             <h5 class="text-align">{{company?.description[translate.currentLang]}}</h5>
         </div>
@@ -20,14 +21,14 @@
                 <th colspan="2" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">{{'receipt'|translate}} {{'number'|translate}}: {{paymentResponse.trackid}}</th>
             </tr>
             <tr>
-                <td>{{'date'|translate}}: {{paymentResponse.postdate.slice(0, 2) + '/' + paymentResponse.postdate.slice(-2)}}</td>
+                <td>{{'date'|translate}}: {{paymentResponse.postdate.slice(0, 2) + '/' + paymentResponse.postdate.slice(-2) + '/' + (now| date: 'yy')}}</td>
             </tr>
             <tr>
-                <td>{{'amount'|translate}}: {{'kd'|translate}}{{paymentResponse.amount}}</td>
+                <td class="price">{{'total'|translate}}: <span>{{paymentResponse.amount}} {{'kd'|translate}}</span></td>
             </tr>
 
             <tr *ngFor="let item of items">
-                <td>{{item.description[translate.currentLang]|translate}}: {{'kd'|translate}}{{item.price}}</td>
+                <td>{{item.description[translate.currentLang]|translate}}: {{item.price}} {{'kd'|translate}}</td>
             </tr>
 
             <tr>
