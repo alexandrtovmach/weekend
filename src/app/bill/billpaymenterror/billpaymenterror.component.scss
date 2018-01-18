@@ -103,9 +103,10 @@ input, .pay-button {
     }
 }
 
-
 .price {
-    font-weight: bold;
+    &.total {
+        font-weight: bold;
+    }
     >span {
         color: blue;
     }

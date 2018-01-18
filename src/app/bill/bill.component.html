@@ -1,4 +1,4 @@
-<mat-card class="card-booking-review" *ngIf="!billInfo?.isPaid">
+<mat-card class="card-booking-review" *ngIf="!billInfo?.isPaid && isLoad">
 
     <mat-card-header class="header">
         <div class="langWrap">
@@ -16,15 +16,15 @@
             <img [src]="billInfo?.company.photoURL" width="100" class="img-circle img-logo" *ngIf="billInfo">
             <h5 class="text-align">{{billInfo?.company.description[translate.currentLang]}}</h5>
         </div>
-        <table class="table" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}" *ngIf="billInfo">
+        <table class="table" [ngClass]="{'arabic': (translate.currentLang === 'en')}" *ngIf="billInfo">
             <tr>
-                <th colspan="2" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">{{'receipt'|translate}} {{'number'|translate}}:  {{billInfo?.ID}}</th>
+                <th colspan="2" [ngClass]="{'arabic': (translate.currentLang === 'en')}" class="price">{{'receipt'|translate}} {{'number'|translate}}:  <span>{{billInfo?.ID}}</span></th>
             </tr>
             <tr *ngFor="let item of billInfo?.items">
-                <td>{{item.description[translate.currentLang]|translate}}: {{item.price}} {{'kd'|translate}}</td>
+                <td class="price">{{item.description[translate.currentLang]|translate}}: <span>{{item.price}} {{'kd'|translate}}</span></td>
             </tr>
             <tr>
-                <td class="price">{{'total'|translate}}: <span>{{billInfo?.total}} {{'kd'|translate}}</span></td>
+                <td class="price total">{{'total'|translate}}: <span>{{billInfo?.total}} {{'kd'|translate}}</span></td>
             </tr>
 
         </table>
@@ -51,7 +51,7 @@
 
 </mat-card>
 
-<mat-card class="card-booking-review successCard" *ngIf="billInfo?.isPaid">
+<mat-card class="card-booking-review successCard" *ngIf="billInfo?.isPaid && isLoad">
     <mat-card-header class="header">
         <div class="langWrap">
             <div class="langPicker" [ngStyle]="{'flex-direction': (translate.currentLang === 'en')? 'column': 'column-reverse'}">
@@ -64,33 +64,33 @@
 
     <mat-card-content>
         <div class="headerpart">
-            <h5 class="text-align">{{company?.name}}</h5>
+            <h5 class="text-align">{{billInfo?.company.name}}</h5>
             <img [src]="billInfo?.company.photoURL" width="100" class="img-circle img-logo" *ngIf="billInfo">
             <h5 class="text-align">{{billInfo?.company.description[translate.currentLang]}}</h5>
         </div>
 
-        <table class="table" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">
+        <table class="table" [ngClass]="{'arabic': (translate.currentLang === 'en')}">
             <tr>
-                <th colspan="2" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">{{'receipt'|translate}} {{'number'|translate}}: {{billInfo?.ID}}</th>
+                <th colspan="2" [ngClass]="{'arabic': (translate.currentLang === 'en')}" class="price">{{'receipt'|translate}} {{'number'|translate}}: <span>{{billInfo?.ID}}</span></th>
             </tr>
             <tr>
-                <td>{{'date'|translate}}: {{billInfo?.cardPostDate.slice(0, 2) + '/' + billInfo?.cardPostDate.slice(-2) + '/' + (now| date: 'yy')}}</td>
+                <td>{{'date'|translate}}: <span>{{billInfo?.cardPostDate.slice(0, 2) + '/' + billInfo?.cardPostDate.slice(-2) + '/' + (now| date: 'yy')}}</span></td>
             </tr>
             <tr>
-                <td class="price">{{'total'|translate}}: <span>{{billInfo?.total}} {{'kd'|translate}}</span></td>
+                <td class="price total">{{'total'|translate}}: <span>{{billInfo?.total}} {{'kd'|translate}}</span></td>
             </tr>
             <tr *ngFor="let item of billInfo?.items">
-                <td>{{item.description[translate.currentLang]|translate}}: {{item.price}} {{'kd'|translate}}</td>
+                <td class="price">{{item.description[translate.currentLang]|translate}}: <span>{{item.price}} {{'kd'|translate}}</span></td>
             </tr>
 
             <tr>
-                <td>{{'paymentId'|translate}}: {{billInfo?.paymentId}}</td>
+                <td class="price">{{'paymentId'|translate}}: <span>{{billInfo?.paymentId}}</span></td>
             </tr>
             <tr>
-                <td>{{'transactionId'|translate}}: {{billInfo?.transictionId}}</td>
+                <td class="price">{{'transactionId'|translate}}: <span>{{billInfo?.transictionId}}</span></td>
             </tr>
             <tr>
-                <td>{{'trackId'|translate}}: {{billInfo?.ID}}</td>
+                <td class="price">{{'trackId'|translate}}: <span>{{billInfo?.ID}}</span></td>
             </tr>
 
         </table>
@@ -100,7 +100,7 @@
             <div class="success-icon">
                 <fa name="check-circle" size="4x"></fa>
             </div>
-            <input matInput #email name="email" [placeholder]="'email'|translate" ngModel email required>
+            <input matInput #email name="email" [placeholder]="'email'|translate" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" ngModel email required>
             <button mat-raised-button [disabled]="!form.valid" [title]="form.valid? '': 'enter email'" [ngStyle]="{'background-color': form.valid? '': 'grey', 'color': form.valid? '': 'black'}">{{'send'|translate}}</button>
         </form>
         <mat-progress-spinner
@@ -115,3 +115,13 @@
     </mat-card-content>
 
 </mat-card>
+
+<div class="loaderPage" *ngIf="!isLoad">
+    <mat-progress-spinner
+        class="example-margin"
+        [color]="'black'"
+        [mode]="'indeterminate'"
+        [value]="50"
+        [style.display]="load? '': 'none'">
+    </mat-progress-spinner>
+</div>

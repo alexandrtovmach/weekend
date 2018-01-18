@@ -196,7 +196,9 @@ input, .pay-button {
 }
 
 .price {
-    font-weight: bold;
+    &.total {
+        font-weight: bold;
+    }
     >span {
         color: blue;
     }
@@ -204,4 +206,26 @@ input, .pay-button {
 
 .example-margin {
     margin: auto;
+}
+
+.loaderPage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+td, th {
+    display: flex;
+    justify-content: space-between;
+}
+
+.arabic {
+    td, th {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
 }

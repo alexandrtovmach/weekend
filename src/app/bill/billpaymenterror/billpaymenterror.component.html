@@ -18,27 +18,27 @@
 
         <table class="table" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">
             <tr>
-                <th colspan="2" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}">{{'receipt'|translate}} {{'number'|translate}}: {{paymentResponse.trackid}}</th>
+                <th colspan="2" [ngStyle]="{'text-align': (translate.currentLang === 'en')? 'left': 'right'}" class="price">{{'receipt'|translate}} {{'number'|translate}}: <span>{{paymentResponse.trackid}}</span></th>
             </tr>
             <tr>
                 <td>{{'date'|translate}}: {{paymentResponse.postdate.slice(0, 2) + '/' + paymentResponse.postdate.slice(-2) + '/' + (now| date: 'yy')}}</td>
             </tr>
             <tr>
-                <td class="price">{{'total'|translate}}: <span>{{paymentResponse.amount}} {{'kd'|translate}}</span></td>
+                <td class="price total">{{'total'|translate}}: <span>{{paymentResponse.amount}} {{'kd'|translate}}</span></td>
             </tr>
 
             <tr *ngFor="let item of items">
-                <td>{{item.description[translate.currentLang]|translate}}: {{item.price}} {{'kd'|translate}}</td>
+                <td class="price">{{item.description[translate.currentLang]|translate}}: <span>{{item.price}} {{'kd'|translate}}</span></td>
             </tr>
 
             <tr>
-                <td>{{'paymentId'|translate}}: {{paymentResponse.paymentid}}</td>
+                <td class="price">{{'paymentId'|translate}}: <span>{{paymentResponse.paymentid}}</span></td>
             </tr>
             <tr>
-                <td>{{'transactionId'|translate}}: {{paymentResponse.transid}}</td>
+                <td class="price">{{'transactionId'|translate}}: <span>{{paymentResponse.transid}}</span></td>
             </tr>
             <tr>
-                <td>{{'trackId'|translate}}: {{paymentResponse.trackid}}</td>
+                <td class="price">{{'trackId'|translate}}: <span>{{paymentResponse.trackid}}</span></td>
             </tr>
 
         </table>

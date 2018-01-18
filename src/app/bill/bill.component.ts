@@ -18,6 +18,7 @@ export class BillComponent implements OnInit {
   now = new Date();
   email: EmailValidator;
   load = false;
+  isLoad = false;
   constructor(private af: AngularFireDatabase,
               private route: ActivatedRoute,
               public translate: TranslateService,
@@ -33,6 +34,7 @@ export class BillComponent implements OnInit {
             this.billInfo.company = company;
             this.localstorage.set('cacheBillItem', billdata);
             this.currentDate = new Date(+billdata['ID']);
+            this.isLoad = true;
           });
       });
     }
