@@ -111,3 +111,15 @@ input, .pay-button {
         color: blue;
     }
 }
+td, th {
+    display: flex;
+    justify-content: space-between;
+}
+
+.arabic {
+    td, th {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+}

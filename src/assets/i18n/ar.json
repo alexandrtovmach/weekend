@@ -155,5 +155,6 @@
     "paymentId": "رقم الفاتورة",
     "transactionWasSuccessful": "تمت العملية بنجاح",
     "thereWasError": "حصل خطأ في التحويل",
-    "tryAgain": "حاول مرة أخرى"
+    "tryAgain": "حاول مرة أخرى",
+    "sendEmail": "جار إرسال البريد الإلكتروني"
 }

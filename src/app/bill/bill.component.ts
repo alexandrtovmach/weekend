@@ -15,10 +15,10 @@ import { LocalStorageService } from 'angular-2-local-storage';
 export class BillComponent implements OnInit {
   billInfo: any;
   currentDate: Date = new Date();
-  now = new Date();
   email: EmailValidator;
   load = false;
   isLoad = false;
+  sending = false;
   constructor(private af: AngularFireDatabase,
               private route: ActivatedRoute,
               public translate: TranslateService,
@@ -42,6 +42,7 @@ export class BillComponent implements OnInit {
   ngOnInit() {}
 
   sendEmail(email) {
+    this.sending = true;
     const sendObj = {
       'type' : 'receipt',
       'to' : email.value,
@@ -50,7 +51,8 @@ export class BillComponent implements OnInit {
     this.load = true;
     this.af.database.ref('/WeekendMoney/emailOrder/').push(sendObj)
       .then(() => {
-        window.location.href = 'home';
+        this.sending = false;
+          email.value = '';
       });
   }
 

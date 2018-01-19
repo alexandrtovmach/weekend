@@ -155,5 +155,6 @@
     "paymentId": "Payment ID",
     "transactionWasSuccessful": "Transaction was successful",
     "thereWasError": "There was an error",
-    "tryAgain": "Try again"
+    "tryAgain": "Try again",
+    "sendEmail": "sending email..."
 }

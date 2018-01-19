@@ -16,6 +16,7 @@ export class BillPaymentErrorComponent implements OnInit {
   company: any;
   currentDate: Date = new Date();
   now = new Date();
+  isLoad = false;
   constructor(private route: ActivatedRoute,
     private af: AngularFireDatabase,
     public translate: TranslateService,
@@ -42,6 +43,7 @@ export class BillPaymentErrorComponent implements OnInit {
         this.af.object('/WeekendMoney/companies/' + billdata['companyId']).valueChanges()
           .subscribe( company => {
             this.company = company;
+            this.isLoad = true;
           });
         savedData['companyId'] = billdata['companyId'];
         savedData['userUID'] = billdata['userUID'];
