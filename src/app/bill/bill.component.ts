@@ -19,6 +19,7 @@ export class BillComponent implements OnInit {
   load = false;
   isLoad = false;
   sending = false;
+  isError = false;
   constructor(private af: AngularFireDatabase,
               private route: ActivatedRoute,
               public translate: TranslateService,
@@ -28,14 +29,22 @@ export class BillComponent implements OnInit {
     const billid = this.route.snapshot.params.billid;
     this.af.object('/WeekendMoney/Receipts/' + billid).valueChanges()
       .subscribe( billdata => {
-        this.af.object('/WeekendMoney/companies/' + billdata['companyId']).valueChanges()
+        if (billdata) {
+          this.af.object('/WeekendMoney/companies/' + billdata['companyId']).valueChanges()
           .subscribe( company => {
-            this.billInfo = billdata;
-            this.billInfo.company = company;
-            this.localstorage.set('cacheBillItem', billdata);
-            this.currentDate = new Date(+billdata['ID']);
-            this.isLoad = true;
+            if (company) {
+              this.billInfo = billdata;
+              this.billInfo.company = company;
+              this.localstorage.set('cacheBillItem', billdata);
+              this.currentDate = new Date(+billdata['ID']);
+              this.isLoad = true;
+            } else {
+              this.isError = true;
+            }
           });
+        } else {
+          this.isError = true;
+        }
       });
     }
 

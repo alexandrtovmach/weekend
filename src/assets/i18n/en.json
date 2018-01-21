@@ -149,12 +149,15 @@
     "unit": "",
     "discount": "Discount",
     "payWith": "Pay with",
-    "date": "Payment date",
+    "date": "Paid on date",
     "transactionId": "Transaction ID",
     "trackId": "Track ID",
     "paymentId": "Payment ID",
     "transactionWasSuccessful": "Transaction was successful",
     "thereWasError": "There was an error",
     "tryAgain": "Try again",
-    "sendEmail": "sending email..."
+    "sendEmail": "sending email...",
+    "allRights": "All right reserved",
+    "weekendMoney": "WeekendMoney",
+    "errorMessage": "Something wrong"
 }

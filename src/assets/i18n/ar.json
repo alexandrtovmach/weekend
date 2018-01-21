@@ -149,12 +149,15 @@
     "unit": "وحدة",
     "discount": "خصم",
     "payWith": "إدفع مع",
-    "date": "تاريخ الدفع",
+    "date": "دفعت بتاريخ",
     "transactionId": "رقم الحوالة",
     "trackId": "رقم الفاتورة",
     "paymentId": "رقم الفاتورة",
     "transactionWasSuccessful": "تمت العملية بنجاح",
     "thereWasError": "حصل خطأ في التحويل",
     "tryAgain": "حاول مرة أخرى",
-    "sendEmail": "جار إرسال البريد الإلكتروني"
+    "sendEmail": "جار إرسال البريد الإلكتروني",
+    "allRights": "جميع الحقوق محفوظة",
+    "weekendMoney": "",
+    "errorMessage": "هل هناك خطب ما"
 }

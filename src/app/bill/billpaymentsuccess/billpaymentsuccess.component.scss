@@ -13,9 +13,6 @@ $green: #47b14d;
         height: 20px;
         overflow: hidden;
         transition: 0.5s;
-        &:hover {
-            height: 50px;
-        }
 
         .langPicker {
             display: flex;
@@ -124,5 +121,13 @@ td, th {
         display: flex;
         flex-direction: row-reverse;
         justify-content: space-between;
+        >span {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            >span {
+                margin-right: 5px;
+            }
+        }
     }
 }

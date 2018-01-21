@@ -2,8 +2,8 @@
     <mat-card-header class="header">
         <div class="langWrap">
             <div class="langPicker" [ngStyle]="{'flex-direction': (translate.currentLang === 'en')? 'column': 'column-reverse'}">
-                <div (click)="translate.use('en')">English</div>
                 <div (click)="translate.use('ar')">Arabic</div>
+                <div (click)="translate.use('en')">English</div>
             </div>
         </div>
         <mat-card-title>{{ currentDate | localizedDate }}</mat-card-title>
@@ -24,10 +24,10 @@
                 <td>{{'date'|translate}} <span>{{paymentResponse.postdate.slice(0, 2) + '/' + paymentResponse.postdate.slice(-2) + '/' + (now| date: 'yy')}}</span></td>
             </tr>
             <tr>
-                <td class="price total">{{'total'|translate}} <span>{{paymentResponse.amount}} {{'kd'|translate}}</span></td>
+                <td class="price total">{{'total'|translate}} <span>{{paymentResponse.amount}} <span>{{'kd'|translate}}</span></span></td>
             </tr>
             <tr *ngFor="let item of items">
-                <td class="price">{{item.description[translate.currentLang]|translate}} <span>{{item.price}} {{'kd'|translate}}</span></td>
+                <td class="price">{{item.description[translate.currentLang]|translate}} <span>{{item.price}} <span>{{'kd'|translate}}</span></span></td>
             </tr>
             
             <tr>
@@ -47,7 +47,7 @@
             <div class="success-icon">
                 <fa name="check-circle" size="4x"></fa>
             </div>
-            <input matInput #email name="email" [placeholder]="'email'|translate" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" ngModel email required>
+            <input matInput #email name="email" [placeholder]="'email'|translate" pattern="[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,63}$" ngModel email required [ngStyle]="{'text-align': (translate.currentLang === 'en')? '': 'right'}">
             <button mat-raised-button [disabled]="!form.valid" [title]="form.valid? '': 'enter email'" [ngStyle]="{'background-color': form.valid? '': 'grey', 'color': form.valid? '': 'black'}">{{'send'|translate}}</button>
         </form>
         <mat-progress-spinner
@@ -58,7 +58,8 @@
             [style.display]="load? '': 'none'">
         </mat-progress-spinner>
 
-        <p class="text-center"> All right reserved &copy;2017 WeekendMoney</p>
+
+        <p class="text-center">{{'allRights'|translate}} <span *ngIf="translate.currentLang === 'en'">&copy;</span> 2017 {{'weekendMoney'|translate}}</p>
     </mat-card-content>
 
 </mat-card>

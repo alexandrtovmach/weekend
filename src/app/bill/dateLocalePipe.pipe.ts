@@ -13,7 +13,7 @@ export class DateLocalePipe implements PipeTransform {
 
   constructor(private translate: TranslateService) { }
 
-  transform(date: any, pattern: string = 'd MMM y, h:mm a'): any {
+  transform(date: any, pattern: string = 'medium'): any {
     const currentLang = this.translate.currentLang;
 
     // if we ask another time for the same date & locale, return the last value
